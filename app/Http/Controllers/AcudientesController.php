@@ -6,6 +6,7 @@ use App\Models\Acudientes;
 use DataTables;
 use UxWeb\SweetAlert\SweetAlert;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateAcudientesRequest;
 
 class AcudientesController extends Controller
 {
@@ -31,7 +32,7 @@ class AcudientesController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-
+        
        return view ('acudientes.index');
     }
 
@@ -51,16 +52,21 @@ class AcudientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAcudientesRequest $request)
     {
+        $restore= Acudientes::withTrashed()->where('id_acudiente', '=', $request->id_acudiente)->first();
+        $restore->restore();
         $datosAcudiente=request()->all();
 
         $datosAcudiente=request()->except('_token');
        
 
       Acudientes::insert($datosAcudiente);
+     
+   
 
       alert()->success('Excelente', 'Registro agregado');
+
 
      
        // Session::flash('flash_message','Guardado con exito');
@@ -126,5 +132,25 @@ class AcudientesController extends Controller
         $data=Acudientes::find($request->id_acudiente)->delete();
         return response()->json();
     }
+    public function indexdeshabilitados(Request $request)
+    {
+       
+  
+         $deshabilitados= Acudientes::onlyTrashed()->get();
+        
+        
+       return view ('acudientes.indexdeshabilitados',compact('deshabilitados'));
+    }
+    public function restore(Request $request, $id_acudiente)
+   {
+       //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
+
+       $data=Acudientes::withTrashed()->where('id_acudiente', '=', $request->id_acudiente)->first();
+   
+       //Restauramos el registro
+       $data->restore();
+       alert()->success('Excelente', 'Registro habilitado');
+       return redirect()->back();
+   }
     
 }

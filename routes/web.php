@@ -24,3 +24,5 @@ Route::resource('/acudientes',AcudientesController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/updateDate', [AcudientesController::class, 'updateDate']);
 Route::post('/deleteDate', [AcudientesController::class, 'deleteDate']);
+Route::get('/acudientesdeshabilitados', [AcudientesController::class, 'indexdeshabilitados']);
+Route::post('/restore/{id_acudiente}', [AcudientesController::class, 'restore']);
