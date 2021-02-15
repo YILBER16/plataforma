@@ -6,6 +6,7 @@ use App\Models\Acudientes;
 use DataTables;
 use UxWeb\SweetAlert\SweetAlert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateAcudientesRequest;
 
 class AcudientesController extends Controller
@@ -22,17 +23,21 @@ class AcudientesController extends Controller
             return Datatables::of(Acudientes::all())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
-                          
-            $btn = '<button  class="editbutton btn btn-primary" data-toggle="modal" data-target="#editmodal"  data-info="'.$data->id_acudiente.';'.$data->nom_acudiente.';'.$data->dir_acudiente.';'.$data->tel_acudiente.';'.$data->cor_acudiente.'"><i class="fas fa-edit"></i></button>';
-             $btn .= '&nbsp;';
+            $btn = '<a type="button" class="viewbutton btn bg-primary" href="/acudientes/'.$data->id_acudiente.'"><i class="fas fa-eye"></i></a>';
+            $btn .= '&nbsp;';
+            $btn .= '<a type="button" class="editbutton btn bg-primary" href="/acudientes/'.$data->id_acudiente.'/edit"><i class="fas fa-edit"></i></a>';
+            $btn .= '&nbsp;';
             $btn .= '<button  class="deletebutton btn btn-danger"  data-toggle="modal" data-target="#deletemodal" data-info="'.$data->id_acudiente.';'.$data->nom_acudiente.';'.$data->dir_acudiente.'"><i class="fas fa-trash-alt"></i></button>';
+          
          
                             return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
+                    
         }
-        
+   
+
        return view ('acudientes.index');
     }
 
@@ -54,17 +59,14 @@ class AcudientesController extends Controller
      */
     public function store(CreateAcudientesRequest $request)
     {
-        $restore= Acudientes::withTrashed()->where('id_acudiente', '=', $request->id_acudiente)->first();
-        $restore->restore();
-        $datosAcudiente=request()->all();
-
-        $datosAcudiente=request()->except('_token');
-       
-
-      Acudientes::insert($datosAcudiente);
-     
-   
-
+        $data= new Acudientes();
+        $data->id_acudiente = ($request->id_acudiente);
+        $data->nom_acudiente = ($request->nom_acudiente);
+        $data->dir_acudiente= ($request->dir_acudiente);
+        $data->tel_acudiente =($request->tel_acudiente);
+        $data->cor_acudiente = ($request->cor_acudiente);
+        $data->doc_documento =$request->file('doc_documento')->store('public/acudientes');
+        $data->save();
       alert()->success('Excelente', 'Registro agregado');
 
 
@@ -79,9 +81,10 @@ class AcudientesController extends Controller
      * @param  \App\Models\Acudientes  $acudientes
      * @return \Illuminate\Http\Response
      */
-    public function show(Acudientes $acudientes)
+    public function show($id_acudiente)
     {
-        //
+        $acudiente=Acudientes::findOrFail($id_acudiente); 
+return view('acudientes.show',compact('acudiente'));
     }
 
     /**
@@ -90,9 +93,10 @@ class AcudientesController extends Controller
      * @param  \App\Models\Acudientes  $acudientes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Acudientes $acudientes)
+    public function edit($id_acudiente)
     {
-        //
+        $acudiente=Acudientes::findOrFail($id_acudiente);
+        return view('acudientes.edit',compact('acudiente'));
     }
 
     /**
@@ -102,9 +106,28 @@ class AcudientesController extends Controller
      * @param  \App\Models\Acudientes  $acudientes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Acudientes $acudiente)
+    public function update(Request $request, $id_acudiente)
     {
-
+        $data= Acudientes::findOrFail($id_acudiente);
+        $data->nom_acudiente = ($request->nom_acudiente);
+        $data->dir_acudiente= ($request->dir_acudiente);
+        $data->tel_acudiente =($request->tel_acudiente);
+        $data->cor_acudiente = ($request->cor_acudiente);
+        if ($request->hasfile('doc_documento')) {
+            //existe un archivo cargado?
+            if (Storage::exists($data->doc_documento))
+        {
+             // aquí la borro
+             Storage::delete($data->doc_documento);
+        }
+        //guardo el archivo nuevo
+            $data->doc_documento =$request->file('doc_documento')->store('public/acudientes');
+        }
+             
+        $data->save();
+        alert()->success('Excelente', 'actualizado correctamente');
+   // Session::flash('flash_message','Guardado con exito');
+        return redirect('acudientes');
     }
 
     /**
@@ -117,16 +140,7 @@ class AcudientesController extends Controller
     {
        
     }
-    public function updateDate(Request $request)
-    {
-        $data = Acudientes::find($request->id_acudiente);
-        $data->nom_acudiente = ($request->nom_acudiente);
-        $data->dir_acudiente= ($request->dir_acudiente);
-        $data->tel_acudiente =($request->tel_acudiente);
-        $data->cor_acudiente = ($request->cor_acudiente);
-        $data->save();
-        return response()->json($data);
-    }
+
     public function deleteDate(Request $request)
     {
         $data=Acudientes::find($request->id_acudiente)->delete();
@@ -134,10 +148,8 @@ class AcudientesController extends Controller
     }
     public function indexdeshabilitados(Request $request)
     {
-       
-  
-         $deshabilitados= Acudientes::onlyTrashed()->get();
-        
+        //ver registros deshabilitados
+       $deshabilitados= Acudientes::onlyTrashed()->get();
         
        return view ('acudientes.indexdeshabilitados',compact('deshabilitados'));
     }

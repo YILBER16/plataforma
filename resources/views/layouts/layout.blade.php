@@ -25,9 +25,10 @@
     <!-- Material Design Icons -->
     <link type="text/css" href="{{asset('dist/dist/css/material-icons.css')}}" rel="stylesheet">
     <!-- include the style -->
-<link rel="stylesheet" href="{{asset('css/alertify.css')}}" >
+    <link rel="stylesheet" href="{{asset('css/alertify.css')}}" >
 <!-- include a theme -->
-<link rel="stylesheet" href="{{asset('css/themes/default.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/themes/default.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('js/bootstrap-fileinput/css/fileinput.min.css')}}" />
 
 
 
@@ -225,24 +226,39 @@
 
                       </span>
 
-                      <span>Luma</span>
+                      <span>Plataforma</span>
                   </a>
 
 
 
-                  <div class="sidebar-heading">Student</div>
+                  <div class="sidebar-heading">Gestion personal</div>
                   <ul class="sidebar-menu">
 
 
-                      <li class="sidebar-menu-item">
-                          <a class="sidebar-menu-button" href="index.html">
-                              <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">home</span>
-                              <span class="sidebar-menu-text">Home</span>
-                          </a>
-                      </li>
-                      
 
-                  </ul>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#acudientes_menu">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-users"></i></span>
+                            Acudientes
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse sm-indent" id="acudientes_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/acudientes')}}">
+                                    <span class="sidebar-menu-text">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/acudientesdeshabilitados')}}">
+                                    <span class="sidebar-menu-text">deshabilitados</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
                   <div class="sidebar-heading">Instructor</div>
                   <ul class="sidebar-menu">
 
@@ -598,54 +614,7 @@
 
     <!-- // END drawer-layout -->
 
-    <!-- jQuery -->
-    <div class="modal fade" id="guardarmodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Registrar</h5>
-            </div>
-            <div class="modal-body">
-        <form action="{{url('/acudientes')}}" class="form-horizontal col-md-12" method="post">
-            {{csrf_field()}}
-               
-            <input type="text" class="form-control" id="ide" name="ide" hidden>
-            <div class="form-row">
-            <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Cedula</label>
-            <input type="text" class="form-control" id="id_acudientee">
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-            <label class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nom_acudientee">
-            </div>
-        </div>
-    
-            <div class="form-row">
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label">Dirección</label>
-              <input type="text" class="form-control" id="dir_acudientee">
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label">Telefono</label>
-              <input type="text" class="form-control" id="tel_acudientee">
-            </div>
-             </div>
-              <div class="form-group">
-              <label class="form-label">E-mail</label>
-              <input type="text" class="form-control" id="cor_acudientee">
-            </div>
-      
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <input type="submit" class="btn btn-primary btn-lg" onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  >
-            </div>
-        </form>
-          </div>
-        </div>
-      </div>
-  
+    <!-- jQuery -->  
 <!-- Modal -->
 <div class="modal fade" id="editmodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -681,6 +650,12 @@
           <label class="form-label">E-mail</label>
           <input type="text" class="form-control" id="cor_acudiente">
         </div>
+        <div class="form-group">
+            <label class="col-md-12 control-label">Documento de identidad</label>
+            <div class="col-md-12">
+              <input type="file" class="form-control" name="doc_documento" id="doc_documento" accept="application/pdf, .pdf">
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -707,6 +682,8 @@
       </div>
     </div>
   </div>
+
+
     <!-- Bootstrap -->
     <script src="{{asset('dist/dist/vendor/popper.min.js')}}"></script>
     <script src="{{asset('dist/dist/vendor/bootstrap.min.js')}}"></script>
@@ -736,6 +713,9 @@
     <script src="https://cdn.datatables.net/rowgroup/1.1.2/js/dataTables.rowGroup.min.js"></script>
     
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('js/bootstrap-fileinput/js/fileinput.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap-fileinput/js/locales/es.js')}}"></script>
+    <script src="{{asset('js/bootstrap-fileinput/themes/fa/theme.min.js')}}"></script>
 
     
 

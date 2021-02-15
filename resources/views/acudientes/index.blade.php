@@ -11,9 +11,8 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
-
+<div class="d-flex justify-content-center"><h2>Gestion de acudientes</h2></div>
+    
 <button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar acudiente</button>
 <table class="table table-striped table-bordered" style="width:100%" id="tablaacudientes">
     <thead>
@@ -197,59 +196,13 @@
     }
 });
 });
-//Mostrar datos para modificar registro
-$(document).on('click','.editbutton', function(){  
-var modal_data = $(this).data('info').split(';');
-$('#id_acudiente').val(modal_data[0]);
-$('#nom_acudiente').val(modal_data[1]);
-$('#dir_acudiente').val(modal_data[2]);
-$('#tel_acudiente').val(modal_data[3]);
-$('#cor_acudiente').val(modal_data[4]);
-});
+
 //mostrar datos para eliminar registros
 $(document).on('click','.deletebutton', function(){
 var modal_data = $(this).data('info').split(';');
 $('.did').text(modal_data[0]);
 $('.dname').html(modal_data[1]);
 });
-//funcion ajax para modificar registro
-$(document).on('click','.btnmodificar', function(){
-    $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-$.ajax({
-type:'post',
-url:'/updateDate',
-data:{
-    '_token':$('input[name=_token]').val(),
-    'id_acudiente':$("#id_acudiente").val(),
-    'nom_acudiente':$("#nom_acudiente").val(),
-    'dir_acudiente':$("#dir_acudiente").val(),
-    'tel_acudiente':$("#tel_acudiente").val(),
-    'cor_acudiente':$("#cor_acudiente").val(),
-},
-success: function(data){
-    console.log("actualizado");
-    swal(
-  'Excelente!',
-  'Registro modificado!',
-  'success'
-)
-$(".swal-button--confirm").click(function(){
-          console.log("click");
-window.location.href = "/acudientes";
-});
-    
-
-},error:function(){ 
-        alertify.error('Error notification message.'); 
-    }
-});
-});
-
-
 $(document).on('click','.btneliminar', function($id_acudiente){
     $.ajaxSetup({
   headers: {
@@ -279,7 +232,7 @@ window.location.href = "/acudientes";
     
 
 },error:function(){ 
-        alertify.error('Error notification message.'); 
+        alertify.error('Ocurrio un error :( verifica los datos'); 
     }
 });
 });
@@ -290,5 +243,18 @@ document.getElementById("enlace").onclick = function () {
 
 
 </script>
-
+<script>
+    $(document).ready(function(){
+      $('#doc_documento').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
+  </script>
 @endsection
