@@ -11,19 +11,28 @@
                     </ul>
                 </div>
                 @endif
-<form action="{{url('/acudientes')}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
+<form action="{{url('/acudientes/'.$acudiente->id_acudiente)}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
-    @include('acudientes.form',['Modo'=>'crear'])
+    {{method_field('PATCH')}}
+    @include('acudientes.form',['Modo'=>'editar'])
   </form>
   <script>
     $(document).ready(function(){
       $('#doc_documento').fileinput({
         language: 'es',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
         allowedFileExtensions:['pdf'],
         maxFileSize: 1000,
+        initialPreview: [
+        'https://plugins.krajee.com/samples/sample-2.pdf'
+    ],
+    initialPreviewConfig: [
+        {type: 'pdf', size: 3072}
+    ],
         showUpload:false,
         showClose:false,
         initialPreviewAsData:true,
+
         dropZoneEnabled:false,
         theme:"fa",
       });

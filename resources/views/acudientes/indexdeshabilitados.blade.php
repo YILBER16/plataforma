@@ -3,7 +3,7 @@
 
 @section('contenido') 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<div class="d-flex justify-content-center"><h2>Acudientes deshabilitados</h2></div>
 <table class="table table-striped table-bordered" style="width:100%" id="tabladeshabilitados">
     <thead>
         <tr>
@@ -12,7 +12,7 @@
             <th>DIRECCION</th>
             <th>TELEFONO</th>
             <th>CORREO</th>
-            <th>ACCIONES</th>
+            <th>HABILITAR</th>
         </tr>
         
     </thead>
@@ -28,7 +28,7 @@
         <td>
             <form method="post" action="{{url('/restore/'.$item->id_acudiente)}}">
             {{csrf_field() }}
-            <button type="submit" onclick="return confirm('¿Desea habilitar este registro?');" class="btn btn-primary">Habilitar<i class="fas fa-thumbs-up"></i></button>
+            <button type="submit" onclick="return confirm('¿Desea habilitar este registro?');" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
 
               </form>
 
@@ -43,6 +43,7 @@
 
     $(document).ready(function() {
         $('#tabladeshabilitados').DataTable({
+            "processing":true,
             "responsive":true,
           "language":{
         "processing": "Procesando...",

@@ -19,7 +19,7 @@ class CreateAcudientesTable extends Migration
             $table->string('dir_acudiente', 120);
             $table->string('tel_acudiente', 20);
             $table->string('cor_acudiente', 65);
-            $table->binary('doc_documento')->nullable();
+            $table->string('doc_documento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
