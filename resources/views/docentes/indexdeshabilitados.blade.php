@@ -2,19 +2,9 @@
 
 
 @section('contenido') 
-@if(Session::has('Mensaje'))
-<div class="alert alert-success content col-sm-12 text-center "role="alert">
-{{ Session::get('Mensaje')}}
-</div>
-
-
-@endif
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="d-flex justify-content-center"><h2>Gestion de acudientes</h2></div>
-    
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar acudiente</button>
-<table class="table table-striped table-bordered" style="width:100%" id="tablaacudientes">
+<div class="d-flex justify-content-center"><h2>docentes deshabilitados</h2></div>
+<table class="table table-striped table-bordered" style="width:100%" id="tabladeshabilitados">
     <thead>
         <tr>
             <th>CEDULA</th>
@@ -22,39 +12,39 @@
             <th>DIRECCION</th>
             <th>TELEFONO</th>
             <th>CORREO</th>
-            <th>ACCIONES</th>
+            <th>HABILITAR</th>
         </tr>
         
     </thead>
+   
     <tbody>
+        @foreach ($deshabilitados as $item)
+        <tr>
+        <td>{{$item->id_docente}}</td>
+        <td>{{$item->nom_docente}}</td>
+        <td>{{$item->dir_docente}}</td>
+        <td>{{$item->tel_docente}}</td>
+        <td>{{$item->cor_docente}}</td>
+        <td>
+            <form method="post" action="{{url('/restoredocentes/'.$item->id_docente)}}">
+            {{csrf_field() }}
+            <button type="submit" onclick="return confirm('¿Desea habilitar este registro?');" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+
+              </form>
+
+        </td>
+    </tr>
+        @endforeach
     </tbody>
+  
 </table>
 
 <script >
 
     $(document).ready(function() {
-        $('#tablaacudientes').DataTable({
-            
-            "serverSide":true,
+        $('#tabladeshabilitados').DataTable({
             "processing":true,
             "responsive":true,
-          
-            "ajax": "{!!URL::to('acudientes')!!}",
-                "columns":[
-                    
-                    {data:'id_acudiente'},
-                    {data:'nom_acudiente'},
-                    {data:'dir_acudiente'},
-                    {data:'tel_acudiente'},
-                    {data:'cor_acudiente'},
-                    {data: 'action'},
-                    
-                   
-                ],
-                'fnCreatedRow':function(nRow,aData,iDataIndex){
-                        $(nRow).attr('class','item'+aData.id_acudiente);
-                    },
-                "responsive":true,
           "language":{
         "processing": "Procesando...",
     "lengthMenu": "Mostrar _MENU_ registros",
@@ -196,52 +186,6 @@
     }
 });
 });
-
-//mostrar datos para eliminar registros
-$(document).on('click','.deletebutton', function(){
-var modal_data = $(this).data('info').split(';');
-$('.did').text(modal_data[0]);
-$('.dname').html(modal_data[1]);
-});
-$(document).on('click','.btneliminar', function($id_acudiente){
-    $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-$.ajax({
-type:'post',
-url:'/deleteDate',
-data:{
-    '_token':$('input[name=_token]').val(),
-    'id_acudiente':$(".did").text(),
-},
-success: function(data){
-    console.log("eliminado");
-    $('#deletemodal').modal('toggle');
-    $('#item' +$('.did').text()).remove();
-    swal(
-  'Excelente!',
-  'Registro eliminado!',
-  'success'
-)
-$(".swal-button--confirm").click(function(){
-          console.log("click");
-window.location.href = "/acudientes";
-});
-    
-
-},error:function(){ 
-        alertify.error('Ocurrio un error :( verifica los datos'); 
-    }
-});
-});
-//enlace para registrar usuario
-document.getElementById("enlace").onclick = function () {
-    window.location.href = "{{url('acudientes/create')}}";
-};
-
-
 </script>
 
 @endsection

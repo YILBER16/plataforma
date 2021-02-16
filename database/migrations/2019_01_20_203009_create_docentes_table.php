@@ -16,14 +16,15 @@ class CreateDocentesTable extends Migration
         Schema::create('docentes', function (Blueprint $table) {
             $table->bigInteger('id_docente')->unsigned();
             $table->primary('id_docente');
-            $table->string('cargo', 20);
-            $table->string('nom_docente', 60);
-            $table->string('tel_docente', 12);
-            $table->string('cor_docente', 12);
+            $table->string('nom_docente', 150);
+            $table->string('dir_docente', 120);
+            $table->string('tel_docente', 15);
+            $table->string('cor_docente', 60);
             $table->string('nivel_academico', 45);
-            $table->binary('doc_documento');
-            $table->binary('hoja_de_vida');
+            $table->string('doc_documento',80);
+            $table->string('hoja_de_vida',80);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

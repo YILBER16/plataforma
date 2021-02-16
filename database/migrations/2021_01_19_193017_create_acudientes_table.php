@@ -14,12 +14,13 @@ class CreateAcudientesTable extends Migration
     public function up()
     {
         Schema::create('acudientes', function (Blueprint $table) {
-            $table->id('id_acudiente')->unsigned();
+            $table->bigInteger('id_acudiente')->unsigned();
+            $table->primary('id_acudiente');
             $table->string('nom_acudiente', 120);
             $table->string('dir_acudiente', 120);
-            $table->string('tel_acudiente', 20);
+            $table->string('tel_acudiente', 15);
             $table->string('cor_acudiente', 65);
-            $table->string('doc_documento')->nullable();
+            $table->string('doc_documento');
             $table->timestamps();
             $table->softDeletes();
         });

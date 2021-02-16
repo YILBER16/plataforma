@@ -22,3 +22,8 @@ Route::get('acudientes', function (){
     ->eloquent(App\Models\Acudientes::query())
     ->toJson();
 });
+Route::get('padres', function (){
+    return datatables()
+    ->eloquent(App\Models\Padres::query())
+    ->toJson();
+});

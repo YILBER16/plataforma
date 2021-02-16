@@ -6,23 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-
-class Acudientes extends Model
+class Padres extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = "acudientes";
+    protected $table = "padres";
 
     protected $fillable = [
-        'id_acudiente',
-        'nom_acudiente',
-        'dir_acudiente',
-        'tel_acudiente',
-        'cor_acudiente',
-        'doc_documento',
+        'id_padre',
+        'nom_padre',
+        'parentesco',
+        'ocu_padre',
+        'dir_padre',
+        'tel_padre',
     ];
-    protected $primaryKey='id_acudiente';
+    protected $primaryKey='id_padre';
     protected $dates= ['delete_at'];
-
 }
