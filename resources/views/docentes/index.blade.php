@@ -11,17 +11,17 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="d-flex justify-content-center"><h2>Gestion de acudientes</h2></div>
+<div class="d-flex justify-content-center"><h2>Gestion de docentes</h2></div>
     
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar acudiente</button>
-<table class="table table-striped table-bordered" style="width:100%" id="tablaacudientes">
+<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar docente</button>
+<table class="table table-striped table-bordered" style="width:100%" id="tabladocentes">
     <thead>
         <tr>
             <th>CEDULA</th>
             <th>NOMBRE</th>
             <th>DIRECCION</th>
             <th>TELEFONO</th>
-            <th>CORREO</th>
+            <th>NIVEL ACADEMICO</th>
             <th>ACCIONES</th>
         </tr>
         
@@ -33,26 +33,26 @@
 <script >
 
     $(document).ready(function() {
-        $('#tablaacudientes').DataTable({
+        $('#tabladocentes').DataTable({
             
             "serverSide":true,
             "processing":true,
             "responsive":true,
           
-            "ajax": "{!!URL::to('acudientes')!!}",
+            "ajax": "{!!URL::to('docentes')!!}",
                 "columns":[
                     
-                    {data:'id_acudiente'},
-                    {data:'nom_acudiente'},
-                    {data:'dir_acudiente'},
-                    {data:'tel_acudiente'},
-                    {data:'cor_acudiente'},
+                    {data:'id_docente'},
+                    {data:'nom_docente'},
+                    {data:'dir_docente'},
+                    {data:'tel_docente'},
+                    {data:'nivel_academico'},
                     {data: 'action'},
                     
                    
                 ],
                 'fnCreatedRow':function(nRow,aData,iDataIndex){
-                        $(nRow).attr('class','item'+aData.id_acudiente);
+                        $(nRow).attr('class','item'+aData.id_docente);
                     },
                 "responsive":true,
           "language":{
@@ -203,7 +203,7 @@ var modal_data = $(this).data('info').split(';');
 $('.did').text(modal_data[0]);
 $('.dname').html(modal_data[1]);
 });
-$(document).on('click','.btneliminar', function($id_acudiente){
+$(document).on('click','.btneliminar', function($id_docente){
     $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -214,7 +214,7 @@ type:'post',
 url:'/deleteDate',
 data:{
     '_token':$('input[name=_token]').val(),
-    'id_acudiente':$(".did").text(),
+    'id_docente':$(".did").text(),
 },
 success: function(data){
     console.log("eliminado");
@@ -227,7 +227,7 @@ success: function(data){
 )
 $(".swal-button--confirm").click(function(){
           console.log("click");
-window.location.href = "/acudientes";
+window.location.href = "/docentes";
 });
     
 
@@ -238,7 +238,7 @@ window.location.href = "/acudientes";
 });
 //enlace para registrar usuario
 document.getElementById("enlace").onclick = function () {
-    window.location.href = "{{url('acudientes/create')}}";
+    window.location.href = "{{url('docentes/create')}}";
 };
 
 

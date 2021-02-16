@@ -256,6 +256,66 @@
 
                         </ul>
                     </li>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#padres_menu">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-user-friends"></i></span>
+                            Padres
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse sm-indent" id="padres_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/padres')}}">
+                                    <span class="sidebar-menu-text">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/padresdeshabilitados')}}">
+                                    <span class="sidebar-menu-text">deshabilitados</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#docentes_menu">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-users"></i></span>
+                            Docentes
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse sm-indent" id="docentes_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/docentes')}}">
+                                    <span class="sidebar-menu-text">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/docentesdeshabilitados')}}">
+                                    <span class="sidebar-menu-text">deshabilitados</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#estudiantes_menu">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-user-graduate"></i></span>
+                            Estudiantes
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        <ul class="sidebar-submenu collapse sm-indent" id="estudiantes_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/estudiantes')}}">
+                                    <span class="sidebar-menu-text">Inicio</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ url('/estudiantesdeshabilitados')}}">
+                                    <span class="sidebar-menu-text">deshabilitados</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
                     
                     
                 </ul>

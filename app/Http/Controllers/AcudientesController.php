@@ -8,6 +8,7 @@ use UxWeb\SweetAlert\SweetAlert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateAcudientesRequest;
+use App\Http\Requests\UpdateAcudientesRequest;
 
 class AcudientesController extends Controller
 {
@@ -83,7 +84,7 @@ class AcudientesController extends Controller
      */
     public function show($id_acudiente)
     {
-        $acudiente=Acudientes::findOrFail($id_acudiente); 
+$acudiente=Acudientes::findOrFail($id_acudiente); 
 return view('acudientes.show',compact('acudiente'));
     }
 
@@ -106,7 +107,7 @@ return view('acudientes.show',compact('acudiente'));
      * @param  \App\Models\Acudientes  $acudientes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_acudiente)
+    public function update(UpdateAcudientesRequest $request, $id_acudiente)
     {
         $data= Acudientes::findOrFail($id_acudiente);
         $data->nom_acudiente = ($request->nom_acudiente);
