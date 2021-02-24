@@ -69,19 +69,86 @@
                        <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                             <label>Correo</label>
-                            <input id="cor_estudiante" name="cor_estudiante" type="email" value="{{isset($estudiante->cor_estudiante)?$estudiante->cor_estudiante:old('cor_estudiante')}}"placeholder="Correo" class="form-control {{$errors->has('cor_estudiante')?'is-invalid':''}}"maxlength="15"oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <input id="cor_estudiante" name="cor_estudiante" type="email" value="{{isset($estudiante->cor_estudiante)?$estudiante->cor_estudiante:old('cor_estudiante')}}"placeholder="Correo" class="form-control {{$errors->has('cor_estudiante')?'is-invalid':''}}"maxlength="60">
                             
                             {!! $errors->first('cor_estudiante','<div class="invalid-feedback">:message</div>') !!} 
                             </div>
                         </div>
                         </div>
-                       
+                        <div class="row">
+                          <div class="col-xs-4 col-sm-4 col-md-4">
+                          <div class="form-group">
+                            <label>Pais</label>
+                            <select id="id_pais" name="id_pais" class="form-control ">
+                              <option value="{{isset($estudiante->pais->id)?$estudiante->pais->id:old('id')}}">@if($Modo=='crear')Seleccione una opción
+                                @endif
+                                @if($Modo=='editar'){{isset($estudiante->pais->id)?$estudiante->pais->name:old('name')}}@endif
+                              </option>
+                              @foreach ($pais as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                               </select>
+                          
+                          {!! $errors->first('id_pais','<div class="invalid-feedback">:message</div>') !!}
+                            </div>
+                        </div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                          <label>Departamento</label>
+                          <select id="id_departamento" name="id_departamento" class="form-control ">
+                            <option value="{{isset($estudiante->departamento->id)?$estudiante->departamento->id:old('id')}}">@if($Modo=='crear')Seleccione una opción
+                              @endif
+                              @if($Modo=='editar'){{isset($estudiante->departamento->id)?$estudiante->departamento->name:old('name')}}@endif
+                            </option>
+                           
+                          
+                               </select>
+                                                     
+                        
+                        {!! $errors->first('id_departamento','<div class="invalid-feedback">:message</div>') !!}
+                          </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                          <div class="form-group">
+                            <label>Ciudad</label>
+                            <select id="id_ciudad" name="id_ciudad" class="form-control ">
+                              <option value="{{isset($estudiante->ciudad->id)?$estudiante->ciudad->id:old('id')}}">@if($Modo=='crear')Seleccione una opción
+                                @endif
+                                @if($Modo=='editar'){{isset($estudiante->ciudad->id)?$estudiante->ciudad->name:old('name')}}@endif
+                              </option>
+                               </select>
+                          
+                          {!! $errors->first('id_ciudad','<div class="invalid-feedback">:message</div>') !!}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Fecha de nacimiento</label>
+                                <input id="fecha_nacimiento" name="fecha_nacimiento" type="date"value="{{isset($estudiante->fecha_nacimiento)?$estudiante->fecha_nacimiento:old('fecha_nacimiento')}}"  class="form-control {{$errors->has('fecha_nacimiento')?'is-invalid':''}}">
+                                
+                                {!! $errors->first('fecha_nacimiento','<div class="invalid-feedback">:message</div>') !!}
+                            </div>
+                        </div>
+
+
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>Fecha de expedicion</label>
+                              <input id="fecha_expedicion" name="fecha_expedicion" type="date"value="{{isset($estudiante->fecha_expedicion)?$estudiante->fecha_expedicion:old('fecha_expedicion')}}"  class="form-control {{$errors->has('fecha_expedicion')?'is-invalid':''}}">
+                              
+                              {!! $errors->first('fecha_expedicion','<div class="invalid-feedback">:message</div>') !!}
+                          </div>
+                      </div>
+                      </div>
+                        
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <input type="submit" class="btn btn-primary btn-lg" 
                                 onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
 
-                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ URL::previous() }}'">Cancelar</button>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/estudiantes')}}'">Cancelar</button>
                           
                             </div>
 

@@ -14,6 +14,6 @@ class AcudientesTableSeeder extends Seeder
      */
     public function run()
     {
-        Acudientes::factory(10)->create();
+        
     }
 }

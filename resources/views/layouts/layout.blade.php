@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('css/alertify.css')}}" >
 <!-- include a theme -->
     <link rel="stylesheet" href="{{asset('css/themes/default.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/yearpicker.css')}}" />
     <link rel="stylesheet" href="{{asset('js/bootstrap-fileinput/css/fileinput.min.css')}}" />
 
 
@@ -43,7 +44,13 @@
     <!-- App CSS -->
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('dist/dist/css/app.css')}}" rel="stylesheet">
+    {{-- Full calendar --}}
+    <link href="{{asset('fullcalendar/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('fullcalendar/main.min.css')}}" rel='stylesheet' />
+    <link href="{{asset('fullcalendar/mainprint.css')}}" rel='stylesheet' />
     
+    
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
@@ -319,16 +326,22 @@
                     
                     
                 </ul>
-                  <div class="sidebar-heading">Instructor</div>
+                  <div class="sidebar-heading">Gestion de calendario</div>
                   <ul class="sidebar-menu">
 
 
                       <li class="sidebar-menu-item">
-                          <a class="sidebar-menu-button" href="instructor-dashboard.html">
-                              <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">school</span>
-                              <span class="sidebar-menu-text">Instructor Dashboard</span>
+                          <a class="sidebar-menu-button" href="{{ url('/aniolectivo')}}">
+                              <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="far fa-clock"></i></span>
+                              <span>Registrar año</span>
                           </a>
                       </li>
+                      <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ url('/calendario')}}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-calendar-alt"></i></span>
+                            <span>Calendario academico</span>
+                        </a>
+                    </li>
                       
 
                   </ul>
@@ -672,59 +685,7 @@
 
   </div>
 
-    <!-- // END drawer-layout -->
-
-    <!-- jQuery -->  
-<!-- Modal -->
-<div class="modal fade" id="editmodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modificar datos</h5>
-        </div>
-        <div class="modal-body">
-    
-            <input type="text" class="form-control" id="id" name="id" hidden>
-        <div class="form-row">
-        <div class="col-12 col-md-6 mb-3">
-        <label class="form-label">Cedula</label>
-        <input type="text" class="form-control" id="id_acudiente" readonly>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-        <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nom_acudiente">
-        </div>
-    </div>
-
-        <div class="form-row">
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Dirección</label>
-          <input type="text" class="form-control" id="dir_acudiente">
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-          <label class="form-label">Telefono</label>
-          <input type="text" class="form-control" id="tel_acudiente">
-        </div>
-    </div>
-          <div class="form-group">
-          <label class="form-label">E-mail</label>
-          <input type="text" class="form-control" id="cor_acudiente">
-        </div>
-        <div class="form-group">
-            <label class="col-md-12 control-label">Documento de identidad</label>
-            <div class="col-md-12">
-              <input type="file" class="form-control" name="doc_documento" id="doc_documento" accept="application/pdf, .pdf">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary btnmodificar">Modificar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+{{-- Modal eliminar --}}
   <div class="modal fade" id="deletemodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -742,7 +703,66 @@
       </div>
     </div>
   </div>
+</div>
+{{-- Modal calendario  --}}
+<div class="modal fade" id="calendarioadd" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Datos del evento</h5>
+        </div>
+        <div class="modal-body">
+          <input type="text" name="txtid" id="txtid" hidden>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+          <label for="" class="">Titulo del evento</label>
+          <input type="text" name="txttitulo" id="txttitulo" class="form-control">
+          <br>
+        </div>
+            </div>
+          <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <label for="" class="">Fecha y hora inicial</label>
+          <input type="datetime-local" name="txtfechainicial" id="txtfechainicial" class="form-control" >
+          <br>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <label for="" class="">Fecha y hora final</label>
+          <input type="datetime-local" name="txtfechafinal" id="txtfechafinal" class="form-control">
+          <br>
+        </div>
+          
+    </div>
+ 
+          
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+          <label for="" class="">Descripción</label>
+          <textarea name="txtdescripcion" id="txtdescripcion" cols="30" rows="3" class="form-control"></textarea>
+          <br>
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <label for="" class="">Color</label>
+          <input type="color" name="txtcolor" id="txtcolor" class="form-control">
+          <br>
+        </div>
+        
+       
+        <div class="modal-footer">
+            <button id="btnagregar" class="btn btn-primary">Agregar</button>
+            <button id="btnmodificar" class="btn btn-warning">Modificar</button>
+            <button id="btnborrar" class="btn btn-danger">Eliminar</button>
+            <button id="btncancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+ 
+  <!-- Modal -->
+  
 
     <!-- Bootstrap -->
     <script src="{{asset('dist/dist/vendor/popper.min.js')}}"></script>
@@ -766,6 +786,13 @@
 
     <!-- App JS -->
     <script src="{{asset('dist/dist/js/app.js')}}"></script>
+    <script src="{{asset('js/yearpicker.js')}}"></script>
+    <script src="{{asset('fullcalendar/main.js')}}"></script>
+    <script src="{{asset('fullcalendar/main.min.js')}}"></script>
+    <script src="{{asset('fullcalendar/locales-all.js')}}"></script>
+
+    <script src="{{asset('fullcalendar/locales-all.min.js')}}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>

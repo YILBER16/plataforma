@@ -18,7 +18,7 @@ class CreateAnioLectivoTable extends Migration
             $table->primary('id_anio_lectivo');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('estado',10);
+            $table->string('estado',20);
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class CreateDocentesAsignaturasCursosTable extends Migration
     public function up()
     {
         Schema::create('docentes_asignaturas_cursos', function (Blueprint $table) {
-            $table->increments('id_docente_asignatura_curso');
+            $table->id('id_docente_asignatura_curso');
             $table->bigInteger('id_docente')->unsigned();
             $table->bigInteger('id_asignatura')->unsigned();
             $table->bigInteger('id_curso')->unsigned();

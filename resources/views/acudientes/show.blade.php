@@ -72,7 +72,7 @@
                             <div class="col-md-12 text-center">
                                
 
-                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ URL::previous() }}'">Volver</button>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/acudientes')}}'">Volver</button>
                           
                             </div>
 
