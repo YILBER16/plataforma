@@ -90,7 +90,7 @@
                                 <input type="submit" class="btn btn-primary btn-lg" 
                                 onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
 
-                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ URL::previous() }}'">Cancelar</button>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/docentes')}}'">Cancelar</button>
                           
                             </div>
 

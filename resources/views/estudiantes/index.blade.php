@@ -14,12 +14,12 @@
 <div class="d-flex justify-content-center"><h2>Gestion de estudiantes</h2></div>
     
 <button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar estudiante</button>
+
 <table class="table table-striped table-bordered" style="width:100%" id="tablaestudiantes">
     <thead>
         <tr>
             <th>CEDULA</th>
             <th>NOMBRE</th>
-            <th>PARENTESCO</th>
             <th>DIRECCION</th>
             <th>TELEFONO</th>
             <th>ACCIONES</th>
@@ -44,7 +44,6 @@
                     
                     {data:'id_estudiante'},
                     {data:'nom_estudiante'},
-                    {data:'parentesco'},
                     {data:'dir_estudiante'},
                     {data:'tel_estudiante'},
                     {data: 'action'},

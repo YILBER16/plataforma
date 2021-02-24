@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiantes;
+use App\Country;
+use App\State;
+use App\City;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEstudiantesRequest;
@@ -17,6 +20,7 @@ class EstudiantesController extends Controller
      */
     public function index(Request $request)
     {
+        
         if ($request->ajax()) {
   
             return Datatables::of(Estudiantes::all())
@@ -45,7 +49,9 @@ class EstudiantesController extends Controller
      */
     public function create()
     {
-        return view('estudiantes.create');
+        $pais= Country::all();
+       
+        return view('estudiantes.create',compact('pais'));
     }
 
     /**
@@ -62,11 +68,12 @@ class EstudiantesController extends Controller
         $data->dir_estudiante= ($request->dir_estudiante);
         $data->tel_estudiante =($request->tel_estudiante);
         $data->cor_estudiante = ($request->cor_estudiante);
+        $data->sexo = ($request->sexo);
         $data->fecha_nacimiento = ($request->fecha_nacimiento);
         $data->fecha_expedicion = ($request->fecha_expedicion);
-        $data->pais = ($request->pais);
-        $data->ciudad = ($request->ciudad);
-        $data->sexo = ($request->sexo);
+        $data->id_pais = ($request->id_pais);
+        $data->id_departamento = ($request->id_departamento);
+        $data->id_ciudad = ($request->id_ciudad);
         $data->save();
       alert()->success('Excelente', 'Registro agregado');
 
@@ -84,9 +91,11 @@ class EstudiantesController extends Controller
      */
     public function show($id_estudiante)
     {
-$estudiante=Estudiantes::findOrFail($id_estudiante); 
+        $pais= Country::all();
 
-return view('estudiantes.show',compact('estudiante'));
+        $estudiante=Estudiantes::with('pais','departamento','ciudad')->findOrFail($id_estudiante);
+
+return view('estudiantes.show',compact('estudiante','pais'));
     }
 
     /**
@@ -97,8 +106,11 @@ return view('estudiantes.show',compact('estudiante'));
      */
     public function edit($id_estudiante)
     {
-        $estudiante=Estudiantes::findOrFail($id_estudiante);
-        return view('estudiantes.edit',compact('estudiante'));
+        $pais= Country::all();
+
+        $estudiante=Estudiantes::with('pais','departamento','ciudad')->findOrFail($id_estudiante);
+      
+        return view('estudiantes.edit',compact('estudiante','pais'));
     }
 
     /**
@@ -112,10 +124,15 @@ return view('estudiantes.show',compact('estudiante'));
     {
         $data= Estudiantes::findOrFail($id_estudiante);
         $data->nom_estudiante = ($request->nom_estudiante);
-        $data->parentesco = ($request->parentesco);
-        $data->ocu_estudiante = ($request->ocu_estudiante);
         $data->dir_estudiante= ($request->dir_estudiante);
         $data->tel_estudiante =($request->tel_estudiante);
+        $data->cor_estudiante = ($request->cor_estudiante);
+        $data->sexo = ($request->sexo);
+        $data->fecha_nacimiento = ($request->fecha_nacimiento);
+        $data->fecha_expedicion = ($request->fecha_expedicion);
+        $data->id_pais = ($request->id_pais);
+        $data->id_departamento = ($request->id_departamento);
+        $data->id_ciudad = ($request->id_ciudad);
         $data->save();
         alert()->success('Excelente', 'actualizado correctamente');
    // Session::flash('flash_message','Guardado con exito');
@@ -155,4 +172,10 @@ return view('estudiantes.show',compact('estudiante'));
        alert()->success('Excelente', 'Registro habilitado');
        return redirect()->back();
    }
+   public function bydepartamentos($id){
+	return State::where('country_id','=',$id)->get();
+    }
+    public function byciudades($id){
+        return City::where('state_id','=',$id)->get();
+        }
 }

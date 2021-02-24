@@ -22,11 +22,16 @@ class CreateEstudiantesTable extends Migration
             $table->string('cor_estudiante', 60);
             $table->date('fecha_nacimiento');
             $table->date('fecha_expedicion');
-            $table->string('pais',25);
-            $table->string('ciudad',30);
+            $table->integer('id_pais')->unsigned();
+            $table->integer('id_departamento')->unsigned();
+            $table->integer('id_ciudad')->unsigned();
             $table->string('sexo',15);           
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('id_pais')->references('id')->on('countries');
+            $table->foreign('id_departamento')->references('id')->on('states');
+            $table->foreign('id_ciudad')->references('id')->on('cities');
 
         });
     }

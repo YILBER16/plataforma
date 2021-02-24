@@ -6,6 +6,8 @@ use App\Http\Controllers\AcudientesController;
 use App\Http\Controllers\PadresController;
 use App\Http\Controllers\EstudiantesController;
 use App\Http\Controllers\DocentesController;
+use App\Http\Controllers\AnioLectivoController;
+use App\Http\Controllers\EventosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +45,11 @@ Route::resource('/estudiantes',EstudiantesController::class);
 Route::post('/deleteDate', [EstudiantesController::class, 'deleteDate']);
 Route::get('/estudiantesdeshabilitados', [EstudiantesController::class, 'indexdeshabilitados']);
 Route::post('/restoreestudiantes/{id_estudiante}', [EstudiantesController::class, 'restoreestudiantes']);
+Route::Get('bydepartamentos/{id}', [EstudiantesController::class, 'bydepartamentos']);
+Route::Get('byciudades/{id}', [EstudiantesController::class, 'byciudades']);
+//rutas años lectivos
+Route::resource('/aniolectivo',AnioLectivoController::class);
+//rutas eventos
+Route::resource('/calendario',EventosController::class);
+
+

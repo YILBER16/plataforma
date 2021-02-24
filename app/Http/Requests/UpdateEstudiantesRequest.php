@@ -13,7 +13,25 @@ class UpdateEstudiantesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+    public function messages()
+    {
+        return [
+
+            'nom_estudiante.required' => 'El nombre es obligatorio',
+            'dir_estudiante.required' => 'La dirección es obligatoria',
+            'tel_estudiante.required' => 'El telefono es obligatorio',
+            'cor_estudiante.required' => 'El correo es obligatorio',
+            'sexo.required' => 'El sexo es obligatorio',
+            'id_pais.required' => 'El pais es obligatorio',
+            'id_departamento.required' => 'El departamento es obligatorio',
+            'id_ciudad.required' => 'La ciudad es obligaria',
+            'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria',
+            'fecha_expedicion.required' => 'La fecha de expedición es obligatoria',
+            
+            
+        ];
     }
 
     /**
@@ -24,7 +42,17 @@ class UpdateEstudiantesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          
+            'nom_estudiante'=>'required',
+            'dir_estudiante'=>'required',
+            'tel_estudiante'=>'required',
+            'cor_estudiante'=>'required',
+            'sexo'=>'required',
+            'fecha_nacimiento'=>'required',
+            'fecha_expedicion' => 'required',
+            'id_pais' => 'required',
+            'id_departamento' => 'required',
+            'id_ciudad' => 'required',
         ];
     }
 }
