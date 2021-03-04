@@ -9,6 +9,7 @@ class Anio_lectivo extends Model
 {
     use HasFactory;
     protected $table = "anio_lectivo";
+    public $timestamps = true;
 
     protected $fillable = [
         'id_anio_lectivo',

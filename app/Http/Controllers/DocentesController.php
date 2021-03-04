@@ -85,8 +85,8 @@ class DocentesController extends Controller
      */
     public function show($id_docente)
     {
-$docente=docentes::findOrFail($id_docente); 
-return view('docentes.show',compact('docente'));
+    $docente=docentes::findOrFail($id_docente); 
+    return view('docentes.show',compact('docente'));
     }
 
     /**
@@ -138,6 +138,7 @@ return view('docentes.show',compact('docente'));
         //guardo el archivo nuevo
             $data->hoja_de_vida =$request->file('hoja_de_vida')->store('public/docentes');
         }
+        
              
         $data->save();
         alert()->success('Excelente', 'actualizado correctamente');

@@ -25,7 +25,8 @@ class CreateEstudiantesTable extends Migration
             $table->integer('id_pais')->unsigned();
             $table->integer('id_departamento')->unsigned();
             $table->integer('id_ciudad')->unsigned();
-            $table->string('sexo',15);           
+            $table->string('sexo',15);    
+            $table->Integer('estado');        
             $table->timestamps();
             $table->softDeletes();
 

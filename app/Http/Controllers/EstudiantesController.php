@@ -74,6 +74,7 @@ class EstudiantesController extends Controller
         $data->id_pais = ($request->id_pais);
         $data->id_departamento = ($request->id_departamento);
         $data->id_ciudad = ($request->id_ciudad);
+        $data->estado = '0';
         $data->save();
       alert()->success('Excelente', 'Registro agregado');
 

@@ -24,7 +24,7 @@ class PadresController extends Controller
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/padres/'.$data->id_padre.'"><i class="fas fa-eye"></i></a>';
             $btn .= '&nbsp;';
-            $btn .= '<a type="button" class="editbutton btn bg-primary" href="/padres/'.$data->id_padre.'/edit"><i class="fas fa-edit"></i></a>';
+            $btn .= '<a type="button" class="editbutton btn bg-warning" href="/padres/'.$data->id_padre.'/edit"><i class="fas fa-edit"></i></a>';
             $btn .= '&nbsp;';
             $btn .= '<button  class="deletebutton btn btn-danger"  data-toggle="modal" data-target="#deletemodal" data-info="'.$data->id_padre.';'.$data->nom_padre.';'.$data->dir_padre.'"><i class="fas fa-trash-alt"></i></button>';
           
