@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Models\Anio_lectivo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventosController extends Controller
 {
@@ -16,7 +17,8 @@ class EventosController extends Controller
     {
         $años= Anio_lectivo::all();
         $ultimoaño=$años->last();
-          $fecha=$ultimoaño->fecha_inicio;
+       $fecha=Carbon::now()->format('Y-m-d');
+        
          
           return view ('anio.calendarioindex',compact('fecha'));
     }

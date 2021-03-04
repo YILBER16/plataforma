@@ -47,7 +47,6 @@
     {{-- Full calendar --}}
     <link href="{{asset('fullcalendar/main.css')}}" rel='stylesheet' />
     <link href="{{asset('fullcalendar/main.min.css')}}" rel='stylesheet' />
-    <link href="{{asset('fullcalendar/mainprint.css')}}" rel='stylesheet' />
     
     
 
@@ -233,7 +232,7 @@
 
                       </span>
 
-                      <span>Plataforma</span>
+                      <span>Edumax</span>
                   </a>
 
 
@@ -326,6 +325,13 @@
                     
                     
                 </ul>
+                <div class="sidebar-heading">Matriculas</div>
+                  <ul class="sidebar-menu">
+                          <a class="sidebar-menu-button" href="{{ url('/matriculas')}}">
+                              <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-id-card-alt"></i></span>
+                              <span>Matricular</span>
+                          </a>
+                  </ul>
                   <div class="sidebar-heading">Gestion de calendario</div>
                   <ul class="sidebar-menu">
 
@@ -345,7 +351,25 @@
                       
 
                   </ul>
+                  <div class="sidebar-heading">Gestion de grados</div>
+                  <ul class="sidebar-menu">
 
+
+                      <li class="sidebar-menu-item">
+                          <a class="sidebar-menu-button" href="{{ url('/grados')}}">
+                              <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-chalkboard"></i></span>
+                              <span>Registro de grados</span>
+                          </a>
+                      </li>
+                      <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ url('/mensualidades')}}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left"><i class="fas fa-coins"></i></span>
+                            <span>Mensualidades</span>
+                        </a>
+                    </li>
+                      
+
+                  </ul>
 
 
 

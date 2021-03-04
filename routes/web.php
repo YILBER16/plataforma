@@ -8,6 +8,10 @@ use App\Http\Controllers\EstudiantesController;
 use App\Http\Controllers\DocentesController;
 use App\Http\Controllers\AnioLectivoController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\GradosController;
+use App\Http\Controllers\MensualidadesController;
+use App\Http\Controllers\MatriculasController;
+use App\Http\Controllers\PagosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +55,15 @@ Route::Get('byciudades/{id}', [EstudiantesController::class, 'byciudades']);
 Route::resource('/aniolectivo',AnioLectivoController::class);
 //rutas eventos
 Route::resource('/calendario',EventosController::class);
+//rutas grados
+Route::resource('/grados',GradosController::class);
+//rutas mensualidades
+Route::resource('/mensualidades',MensualidadesController::class);
+//rutas matriculas
+Route::resource('/matriculas',MatriculasController::class);
+//rutas pagos
+Route::resource('/pagos',PagosController::class);
+Route::Get('/facturaspagadas', [PagosController::class, 'facturaspagadas']);
+
 
 

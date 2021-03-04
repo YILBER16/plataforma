@@ -50,6 +50,7 @@
 
   
     dateClick:function(info){
+      if(info.dateStr >='{{$fecha}}'){
       limpiarformulario();
    
       $('#txtfechainicial').val(info.dateStr+ 'T00:00');
@@ -57,8 +58,13 @@
       $("#btnmodificar").prop("disabled",true);
       $("#btnborrar").prop("disabled",true);
       $('#calendarioadd').modal('toggle');
-      console.log(info.dateStr+' ' + 'T00:00');
-     
+      console.log('{{$fecha}}','es mayor');
+      console.log(info.dateStr);
+    }else
+    {
+      console.log(info.dateStr+' ' + 'T00:00' ,  '{{$fecha}}');
+      swal("Ocurrio un error!", "No se puede crear eventos en el pasado", "error");
+    }
     },
     eventClick:function(info){
       
@@ -78,25 +84,15 @@
         anio2=(end.getFullYear()); 
         minutos= info.event.start.getMinutes();
         minutos2= info.event.end.getMinutes();
-        if(minutos!='0'){
-          minutos=info.event.start.getMinutes();
-          console.log("minutos1");
-        }
-        else{
-         minutos='00';
-         console.log("minutos2");
-        }
-        if(minutos2!='0'){
-          minutos2=info.event.end.getMinutes();
-          console.log("minutos1");
-        }
-        else{
-         minutos2='00';
-         console.log("minutos2");
-        }
+       
         
         horainicial=(info.event.start.getHours());   
         horafinal=(end.getHours()); 
+
+        horainicial=(horainicial<10)?"0"+horainicial:horainicial;
+        horafinal=(horafinal<10)?"0"+horafinal:horafinal;
+        minutos=(minutos<10)?"0"+minutos:minutos;
+        minutos2=(minutos2<10)?"0"+minutos2:minutos2;
 
         mes=(mes<10)?"0"+mes:mes;
         dia=(dia<10)?"0"+dia:dia;
@@ -107,7 +103,7 @@
         $('#txtid').val(info.event.id);
         $('#txttitulo').val(info.event.title);
         $('#txtfechainicial').val(anio+"-"+mes+"-"+dia+"T"+horainicial+":"+minutos);
-        console.log(minutos2);
+        console.log(anio+"-"+mes+"-"+dia+"T"+horainicial+":"+minutos);
         $('#txtfechafinal').val(anio2+"-"+mes2+"-"+dia2+"T"+horafinal+":"+minutos2);
         $('#txtcolor').val(info.event.borderColor);
         $('#txtdescripcion').val(info.event.extendedProps.descripcion);

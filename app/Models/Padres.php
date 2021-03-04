@@ -22,4 +22,9 @@ class Padres extends Model
     ];
     protected $primaryKey='id_padre';
     protected $dates= ['delete_at'];
+    public function matriculas()
+    {
+        return $this->hasMany(Matriculas::class,'id_padre','id_padre');
+    }
+    
 }

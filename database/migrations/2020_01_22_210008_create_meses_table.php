@@ -17,6 +17,7 @@ class CreateMesesTable extends Migration
             $table->id('id_mes');
             $table->string('nom_mes',20);
             $table->bigInteger('id_anio_lectivo')->unsigned();
+            $table->Integer('estado');
             $table->timestamps();
             $table->foreign('id_anio_lectivo')->references('id_anio_lectivo')->on('anio_lectivo');
 

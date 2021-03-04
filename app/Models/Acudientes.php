@@ -24,5 +24,8 @@ class Acudientes extends Model
     ];
     protected $primaryKey='id_acudiente';
     protected $dates= ['delete_at'];
-
+    public function matriculas()
+    {
+        return $this->hasMany(Matriculas::class,'id_acudiente','id_acudiente');
+    }
 }

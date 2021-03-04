@@ -29,6 +29,7 @@ class Estudiantes extends Model
         'id_departamento',
         'id_ciudad',
         'sexo',
+        'estado',
 
     ];
     protected $primaryKey='id_estudiante';
@@ -44,5 +45,9 @@ class Estudiantes extends Model
     public function ciudad()
     {
         return $this->hasOne(City::class,'id','id_ciudad');
+    }
+    public function matriculas()
+    {
+        return $this->hasMany(Matriculas::class,'id_estudiante','id_estudiante');
     }
 }
