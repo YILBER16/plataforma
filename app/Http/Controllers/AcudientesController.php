@@ -84,8 +84,8 @@ class AcudientesController extends Controller
      */
     public function show($id_acudiente)
     {
-$acudiente=Acudientes::findOrFail($id_acudiente); 
-return view('acudientes.show',compact('acudiente'));
+        $acudiente=Acudientes::findOrFail($id_acudiente); 
+        return view('acudientes.show',compact('acudiente'));
     }
 
     /**

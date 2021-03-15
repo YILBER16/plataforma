@@ -12,6 +12,8 @@ use App\Http\Controllers\GradosController;
 use App\Http\Controllers\MensualidadesController;
 use App\Http\Controllers\MatriculasController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\ObservadoresController;
+use App\Http\Controllers\ItemobservadoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +63,20 @@ Route::resource('/grados',GradosController::class);
 Route::resource('/mensualidades',MensualidadesController::class);
 //rutas matriculas
 Route::resource('/matriculas',MatriculasController::class);
+Route::get('saldofavor/{id_matricula}/edit', [MatriculasController::class, 'saldofavor']);
+Route::get('/listadonuevos', [MatriculasController::class, 'listadonuevos']);
+Route::get('/listadoantiguos', [MatriculasController::class, 'listadoantiguos']);
+Route::get('/ultimamatricula', [MatriculasController::class, 'ultimamatricula']);
+Route::put('registrarsaldo/{id_matricula}', [MatriculasController::class, 'registrarsaldo']);
+
 //rutas pagos
 Route::resource('/pagos',PagosController::class);
 Route::Get('/facturaspagadas', [PagosController::class, 'facturaspagadas']);
-
-
+Route::get('pdfpago/{id_pago}', [PagosController::class, 'exportpdfpago'])->name('pago.pdfpago');;
+//rutas observadores
+Route::resource('/observadores',ObservadoresController::class);
+Route::Get('faltas/{id}', [ObservadoresController::class, 'faltas']);
+Route::Get('/verobservador/{id_estudiante}', [ObservadoresController::class, 'verobservador']);
+//rutas itemobservadores
+Route::resource('/itemobservadores',ItemobservadoresController::class);
 

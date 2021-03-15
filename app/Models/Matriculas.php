@@ -20,6 +20,8 @@ class Matriculas extends Model
         'id_padre',
         'id_madre',
         'valor_matricula',
+        'descuento_mensualidad',
+        'saldo_favor',
         'doc_foto',
         'doc_documento',
         'doc_paz_salvo',

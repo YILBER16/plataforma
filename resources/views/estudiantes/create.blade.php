@@ -16,6 +16,54 @@
     @include('estudiantes.form',['Modo'=>'crear'])
   </form>
   <script>
+     $(document).ready(function(){
+      $('#doc_simat').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
+    $(document).ready(function(){
+      $('#doc_vacunacion').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
+    $(document).ready(function(){
+      $('#doc_salud').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
+    $(document).ready(function(){
+      $('#doc_otros').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
   $(document).ready(function(){
       $("#id_pais").change(function(){
         var pais = $(this).val();
@@ -30,6 +78,10 @@
   
         });
       });
+    });
+    $(document).ready(function(){
+      $('.form-control-chosen').chosen();
+      
     });
 
     $(document).ready(function(){
@@ -47,5 +99,6 @@
         });
       });
     });
+   
   </script>
 @endsection

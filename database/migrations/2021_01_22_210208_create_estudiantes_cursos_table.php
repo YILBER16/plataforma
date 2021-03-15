@@ -24,9 +24,7 @@ class CreateEstudiantesCursosTable extends Migration
             $table->foreign('id_curso')->references('id_curso')->on('cursos');
 
         });
-        Artisan::call('db:seed', [
-            '--class' => DatosSeeder::class
-        ]);
+       
     }
 
     /**

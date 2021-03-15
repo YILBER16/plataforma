@@ -11,10 +11,8 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="d-flex justify-content-center"><h2>Gestion de estudiantes</h2></div>
-    
 <button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar estudiante</button>
-
+<div class="d-flex justify-content-center"><h2>Gestion de estudiantes</h2></div>
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablaestudiantes">
     <thead>
         <tr>

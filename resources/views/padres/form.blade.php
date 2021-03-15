@@ -38,8 +38,8 @@
                                       @endif
                                       @if($Modo=='editar'){{isset($padre->parentesco)?$padre->parentesco:old('parentesco')}}@endif
                                     </option>
-                                    <option value="Madre">Madre</option>
-                                    <option value="Padre">Padre</option>
+                                    <option value="Madre" @if(old('parentesco') == 'Madre') selected="selected" @endif>Madre</option>
+                                    <option value="Padre" @if(old('parentesco') == 'Padre') selected="selected" @endif>Padre</option>
                                      </select>
                                 
                                 {!! $errors->first('parentesco','<div class="invalid-feedback">:message</div>') !!}

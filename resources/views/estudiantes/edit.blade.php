@@ -18,7 +18,61 @@
   </form>
   <script>
     $(document).ready(function(){
-      $('#doc_documento').fileinput({
+      $('#doc_otros').fileinput({
+        language: 'es',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        initialPreview: [
+        'https://plugins.krajee.com/samples/sample-2.pdf'
+    ],
+    initialPreviewConfig: [
+        {type: 'pdf', size: 3072}
+    ],
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+      $('#doc_simat').fileinput({
+        language: 'es',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        initialPreview: [
+        'https://plugins.krajee.com/samples/sample-2.pdf'
+    ],
+    initialPreviewConfig: [
+        {type: 'pdf', size: 3072}
+    ],
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+      $('#doc_vacunacion').fileinput({
+        language: 'es',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        initialPreview: [
+        'https://plugins.krajee.com/samples/sample-2.pdf'
+    ],
+    initialPreviewConfig: [
+        {type: 'pdf', size: 3072}
+    ],
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+      $('#doc_salud').fileinput({
         language: 'es',
         pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
         allowedFileExtensions:['pdf'],

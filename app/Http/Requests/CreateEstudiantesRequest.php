@@ -32,7 +32,9 @@ class CreateEstudiantesRequest extends FormRequest
             'id_ciudad.required' => 'La ciudad es obligaria',
             'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria',
             'fecha_expedicion.required' => 'La fecha de expedición es obligatoria',
-            
+            'doc_salud.required' => 'Por favor adjunte el certificado de salud',
+            'doc_simat.required' => 'Por favor adjunte una el certificado de simat',
+            'doc_vacunacion.required' => 'Por favor adjunte el carnet de vacunación',
             
         ];
     }
@@ -56,6 +58,9 @@ class CreateEstudiantesRequest extends FormRequest
             'id_pais' => 'required',
             'id_departamento' => 'required',
             'id_ciudad' => 'required',
+            'doc_salud' => 'required',
+            'doc_simat' => 'required',
+            'doc_vacunacion' => 'required',
         ];
     }
 }

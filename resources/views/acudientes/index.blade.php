@@ -11,9 +11,10 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar acudiente</button>
+
 <div class="d-flex justify-content-center"><h2>Gestion de acudientes</h2></div>
     
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar acudiente</button>
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablaacudientes">
     <thead>
         <tr>

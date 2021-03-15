@@ -24,16 +24,18 @@ class MatriculasController extends Controller
      */
     public function index(Request $request)
     {
-       
+    //  dd(Matriculas::with('estudiante','acudiente','padre','madre','grado')->orderBy('created_at','desc')->get());
         if ($request->ajax()) {
   
-            return Datatables::of(Matriculas::with('estudiante','acudiente','padre','madre','grado')->get())
+            return Datatables::of(Matriculas::with('estudiante','acudiente','padre','madre','grado')->orderBy('created_at','desc')->get())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/matriculas/'.$data->id_matricula.'"><i class="fas fa-eye"></i></a>';
             $btn .= '&nbsp;';
             $btn .= '<a type="button" class="editbutton btn bg-primary" href="/matriculas/'.$data->id_matricula.'/edit"><i class="fas fa-edit"></i></a>';
             $btn .= '&nbsp;';
+            $btn .= '<a type="button" class="saldobutton btn bg-success" href="/saldofavor/'.$data->id_matricula.'/edit"><i class="fas fa-donate"></i></a>';
+
           
          
                             return $btn;
@@ -42,7 +44,9 @@ class MatriculasController extends Controller
                     ->make(true);
                     
         }
-        return view ('matriculas.index');
+        $anio=Anio_lectivo::all();
+
+        return view ('matriculas.index',compact('anio'));
     }
 
     /**
@@ -52,13 +56,11 @@ class MatriculasController extends Controller
      */
     public function create()
     {
-        
-        $estudiantes=Estudiantes::all()->where('estado','=','0');
         $grados=Grados::all();
         $acudientes=Acudientes::all();
         $padres=Padres::all()->where('parentesco','=','Padre');
         $madres=Padres::all()->where('parentesco','=','Madre');
-        return view('matriculas.create',compact('estudiantes','grados','acudientes','padres','madres'));
+        return view('matriculas.create',compact('grados','acudientes','padres','madres'));
     }
 
     /**
@@ -69,8 +71,9 @@ class MatriculasController extends Controller
      */
     public function store(MatriculasCreateRequest $request)
     {
+
         $anio=Anio_lectivo::all()->last();
-     
+        
         $data= new Matriculas();
 
         $data->id_estudiante = ($request->id_estudiante);
@@ -80,6 +83,9 @@ class MatriculasController extends Controller
         $data->id_acudiente =($request->id_acudiente);
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
         $data->valor_matricula = ($request->valor_matricula);
+        $data->sistema = ($request->sistema);
+        $data->descuento_mensualidad = ($request->descuento_mensualidad);
+        $data->saldo_favor = '0';
         $data->doc_foto =$request->file('doc_foto')->store('public/matriculas/fotos');
         $data->doc_documento =$request->file('doc_documento')->store('public/matriculas/documentos');
         $data->doc_paz_salvo =$request->file('doc_paz_salvo')->store('public/matriculas/pazysalvos');
@@ -142,6 +148,9 @@ class MatriculasController extends Controller
         $data->id_acudiente =($request->id_acudiente);
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
         $data->valor_matricula = ($request->valor_matricula);
+        $data->sistema = ($request->sistema);
+        $data->descuento_mensualidad = ($request->descuento_mensualidad);
+        
         //para la foto
         if ($request->hasfile('doc_foto')) {
             //existe un archivo cargado?
@@ -185,7 +194,7 @@ class MatriculasController extends Controller
         }
             $data->doc_otros =$request->file('doc_otros')->store('public/matriculas/otros');
         }
-     
+             
         $data->save();
         alert()->success('Excelente', 'Actualizado correctamente');
    // Session::flash('flash_message','Guardado con exito');
@@ -202,4 +211,40 @@ class MatriculasController extends Controller
     {
         //
     }
+    public function saldofavor(Request $request, $id_matricula)
+    {
+       $estudiante= Matriculas::with('estudiante')->findOrFail($id_matricula);
+        return view('matriculas.saldo',compact('estudiante'));
+
+    }
+    public function registrarsaldo(Request $request, $id_matricula)
+    {
+        $data= Matriculas::findOrFail($id_matricula);
+        $saldo_anterior= ($request->saldo_favor_anterior);
+        $data->saldo_favor= $saldo_anterior+($request->saldo_favor);
+        $data->save();
+        alert()->success('Excelente', 'Saldo registrado correctamente');
+   // Session::flash('flash_message','Guardado con exito');
+        return redirect('matriculas');
+    }
+    public function listadonuevos()
+    {
+       $estudiantesnuevo= Estudiantes::where('estado','=','0')->get();
+       return response()->json($estudiantesnuevo);
+
+    }
+    public function listadoantiguos()
+    {
+       $estudiantes= Estudiantes::all()->where('estado','=','1');
+       return response()->json($estudiantes);
+
+    }
+    public function ultimamatricula(Request $request)
+    {
+      $resultado= Matriculas::with('padre','madre','acudiente')->where('id_estudiante',$request->id_estudiante)->latest('created_at')->first();
+        $resultado2=$resultado->padre->nom_padre;
+      return response()->json($resultado);
+
+    }
+   
 }
