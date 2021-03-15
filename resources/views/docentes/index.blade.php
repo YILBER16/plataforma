@@ -11,9 +11,9 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar docente</button>
 <div class="d-flex justify-content-center"><h2>Gestion de docentes</h2></div>
     
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar docente</button>
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tabladocentes">
     <thead>
         <tr>
@@ -54,7 +54,7 @@
                 'fnCreatedRow':function(nRow,aData,iDataIndex){
                         $(nRow).attr('class','item'+aData.id_docente);
                     },
-                "responsive":true,
+                
           "language":{
         "processing": "Procesando...",
     "lengthMenu": "Mostrar _MENU_ registros",

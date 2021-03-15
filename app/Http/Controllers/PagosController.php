@@ -10,7 +10,10 @@ use App\Models\Abonos;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DataTables;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests\CreatePagosRequest;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Options;
 class PagosController extends Controller
 {
     /**
@@ -29,7 +32,7 @@ class PagosController extends Controller
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/pagos/'.$data->id_pago.'"><i class="fas fa-eye"></i></a>';
             $btn .= '&nbsp;';
-            $btn .= '<a type="button" class="editbutton btn bg-primary" href="/pagos/'.$data->id_pago.'/edit"><i class="fas fa-hand-holding-usd"></i></i></a>';
+            $btn .= '<a type="button" class="editbutton btn bg-success" href="/pagos/'.$data->id_pago.'/edit"><i class="fas fa-hand-holding-usd"></i></i></a>';
             $btn .= '&nbsp;';
           
          
@@ -61,7 +64,7 @@ class PagosController extends Controller
      */
     public function store(CreatePagosRequest $request)
     {
-        $datos = Matriculas::select('id_matricula','id_estudiante','id_grado','id_acudiente')->with('grado','grado.mensualidad')->get()->toArray();
+        $datos = Matriculas::select('id_matricula','id_estudiante','id_grado','id_acudiente','descuento_mensualidad')->with('grado','grado.mensualidad')->get()->toArray();
      
         foreach($datos as $dato) {
           
@@ -72,8 +75,11 @@ class PagosController extends Controller
             $dat1= $dato['grado'];
             $dat2=$dat1['mensualidad'];
             $dat3=$dat2['valor'];
-            $data->valor_pago =$dat3;
-            $data->saldo =$dat3;
+            $descuentoparcial=$dato['descuento_mensualidad']/100;
+            $descuentototal=$dat3*$descuentoparcial;
+            $totalapagar=$dat3-$descuentototal;
+            $data->valor_pago =$totalapagar;
+            $data->saldo =$totalapagar;
             $data->estado= '0';
            
             $data->save();
@@ -126,35 +132,82 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id_pago)
     {
-        
-        
         $data = new Abonos();
         $data->id_pago= ($request->id_pago);
-        $data->abono=($request->abono);
         $abono=($request->abono);
-        $data->saldo= ($request->saldo)-($abono);
-        $saldo=($request->saldo)-($abono);
-        if($abono<=($request->saldo)){
-        $data->save();
-        Pagos::where('id_pago', $request->id_pago)->update(array('saldo'=>$saldo));
-
-        $pagado=Pagos::select('saldo')->findOrFail($id_pago);
-       $pagado= $pagado->saldo;
-
-        if($pagado==0){
-            Pagos::where('id_pago', $request->id_pago)->update(array('estado'=>'1'));
+        $abonoconsaldo=($request->saldo_favor)+($request->abono);
+        if ($request->has('valor')) {
+        $data->abono=($request->saldo_favor);
+        $data->saldo= ($request->saldo)-($abonoconsaldo);
+        }else{
+            $data->abono=($request->abono);
+            $data->saldo= ($request->saldo)-($abono);
         }
+       
 
+        $saldo=($request->saldo)-($abono);
+        $saldoconfavor=($request->saldo)-($abonoconsaldo);
 
-        alert()->success('Excelente', 'Abono registrado');
-        return redirect('pagos');
-
+        if ($request->has('valor')) {
+            if($abonoconsaldo<=($request->saldo)){
+                $data->save();
+                Pagos::where('id_pago', $request->id_pago)->update(array('saldo'=>$saldoconfavor));
+                Matriculas::where('id_matricula', $request->id_matricula)->update(array('saldo_favor'=>'0'));
         
-
-         }else{
-            alert()->error('Error', 'El abono no puede ser mayor al saldo');
-            return back()->with('alert', 'Registrado con exito');
-         }
+                $pagado=Pagos::select('saldo')->findOrFail($id_pago);
+               $pagado= $pagado->saldo;
+        
+                if($pagado==0){
+                    Pagos::where('id_pago', $request->id_pago)->update(array('estado'=>'1'));
+                }
+        
+        
+                alert()->success('Excelente', 'Abono registrado');
+                return redirect('pagos');
+        
+                
+        
+                 }else{
+                $saldorestante= $abonoconsaldo-($request->saldo);
+                $data->abono=($request->saldo);
+                $data->saldo= '0';
+                $data->save();
+                Pagos::where('id_pago', $request->id_pago)->update(array('saldo'=>'0'));
+                Matriculas::where('id_matricula', $request->id_matricula)->update(array('saldo_favor'=>$saldorestante));
+                $pagado=Pagos::select('saldo')->findOrFail($id_pago);
+               $pagado= $pagado->saldo;
+        
+                if($pagado==0){
+                    Pagos::where('id_pago', $request->id_pago)->update(array('estado'=>'1'));
+                }
+                alert()->success('Excelente', 'Abono registrado');
+                return redirect('pagos');
+                 }
+        } 
+        
+        else {
+            if($abono<=($request->saldo)){
+                $data->save();
+                Pagos::where('id_pago', $request->id_pago)->update(array('saldo'=>$saldo));
+        
+                $pagado=Pagos::select('saldo')->findOrFail($id_pago);
+               $pagado= $pagado->saldo;
+        
+                if($pagado==0){
+                    Pagos::where('id_pago', $request->id_pago)->update(array('estado'=>'1'));
+                }
+        
+        
+                alert()->success('Excelente', 'Abono registrado');
+                return redirect('pagos');
+        
+                
+        
+                 }else{
+                    alert()->error('Error', 'El abono no puede ser mayor al saldo');
+                    return back()->with('alert', 'Registrado con exito');
+                 }
+        }       
 
        
         
@@ -173,13 +226,17 @@ class PagosController extends Controller
     public function facturaspagadas(Request $request)
     {
        
+        $enlace='pagopdf';
     
         if ($request->ajax()) {
+
            
             return Datatables::of(Pagos::with('matricula','matricula.estudiante','mes')->where('saldo','==','0')->get())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/pagos/'.$data->id_pago.'"><i class="fas fa-eye"></i></a>';
+            $btn .= '&nbsp;';
+            $btn .= '<a type="button" class="viewbutton btn bg-danger" href="/pdfpago/'.$data->id_pago.'""><i class="far fa-file-pdf"></i></a>';
 
           
          
@@ -191,4 +248,13 @@ class PagosController extends Controller
         }
         return view('pagos.pagadasindex');
     }
+
+    public function exportpdfpago(Request $request, $id_pago)
+    {
+    $pago= Pagos::with('matricula', 'matricula.estudiante','matricula.acudiente','mes')->findOrFail($id_pago);
+    $pdf=PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true,"isPhpEnabled", true])->setPaper(array(0,0,600,600))->loadView('pagos.pdfpago',compact('pago'));
+    $pdf->getDomPDF()->set_option("enable_php", true);
+    return $pdf->stream('pago.pdf');
+    }
+     
 }

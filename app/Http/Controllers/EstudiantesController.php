@@ -10,6 +10,7 @@ use DataTables;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEstudiantesRequest;
 use App\Http\Requests\UpdateEstudiantesRequest;
+use Illuminate\Support\Facades\Storage;
 
 class EstudiantesController extends Controller
 {
@@ -75,6 +76,13 @@ class EstudiantesController extends Controller
         $data->id_departamento = ($request->id_departamento);
         $data->id_ciudad = ($request->id_ciudad);
         $data->estado = '0';
+        $data->doc_simat =$request->file('doc_simat')->store('public/estudiantes/simat');
+        $data->doc_vacunacion =$request->file('doc_vacunacion')->store('public/estudiantes/vacunacion');
+        $data->doc_salud =$request->file('doc_salud')->store('public/estudiantes/salud');
+        if ($request->hasfile('doc_otros')) {
+            $data->doc_otros =$request->file('doc_otros')->store('public/estudiantes/otros');
+            }
+
         $data->save();
       alert()->success('Excelente', 'Registro agregado');
 
@@ -134,6 +142,45 @@ return view('estudiantes.show',compact('estudiante','pais'));
         $data->id_pais = ($request->id_pais);
         $data->id_departamento = ($request->id_departamento);
         $data->id_ciudad = ($request->id_ciudad);
+        
+        //para el simat
+        if ($request->hasfile('doc_simat')) {
+            //existe un archivo cargado?
+            if (Storage::exists($data->doc_simat))
+        {
+             // aquí la borro
+             Storage::delete($data->doc_simat);
+        }
+        //guardo el archivo nuevo
+            $data->doc_simat =$request->file('doc_simat')->store('public/estudiantes/simat');
+        }
+        //para el carnet de vacunacion
+        if ($request->hasfile('doc_vacunacion')) {
+            //existe un archivo cargado?
+            if (Storage::exists($data->doc_vacunacion))
+        {
+             // aquí la borro
+             Storage::delete($data->doc_vacunacion);
+        }
+        //guardo el archivo nuevo
+            $data->doc_vacunacion =$request->file('doc_vacunacion')->store('public/estudiantes/vacunacion');
+        }
+        //para otros documentos
+        if ($request->hasfile('doc_otros')) {
+            if (Storage::exists($data->doc_otros))
+        {
+             Storage::delete($data->doc_otros);
+        }
+            $data->doc_otros =$request->file('doc_otros')->store('public/estudiantes/otros');
+        }
+        //para el carnet de salud
+        if ($request->hasfile('doc_salud')) {
+            if (Storage::exists($data->doc_salud))
+        {
+             Storage::delete($data->doc_salud);
+        }
+            $data->doc_salud =$request->file('doc_salud')->store('public/estudiantes/salud');
+        }
         $data->save();
         alert()->success('Excelente', 'actualizado correctamente');
    // Session::flash('flash_message','Guardado con exito');

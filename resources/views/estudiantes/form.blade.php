@@ -79,7 +79,7 @@
                           <div class="col-xs-4 col-sm-4 col-md-4">
                           <div class="form-group">
                             <label>Pais</label>
-                            <select id="id_pais" name="id_pais" class="form-control ">
+                            <select id="id_pais" name="id_pais" class="form-control form-control-chosen" >
                               <option value="{{isset($estudiante->pais->id)?$estudiante->pais->id:old('id')}}">@if($Modo=='crear')Seleccione una opción
                                 @endif
                                 @if($Modo=='editar'){{isset($estudiante->pais->id)?$estudiante->pais->name:old('name')}}@endif
@@ -142,7 +142,44 @@
                           </div>
                       </div>
                       </div>
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label class=" control-label">Certificado Simat</label>
+                            
+                              <input type="file" class="form-control" name="doc_simat" id="doc_simat" @if($Modo=='editar') data-initial-preview="{{isset($estudiante->doc_simat) ? Storage::url("$estudiante->doc_simat") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Certificado+simat"}}" @endif accept="application/pdf, .pdf">
+                              {!! $errors->first('doc_simat','<div class="invalid-feedback">:message</div>') !!}
+                            </div>
+                          </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                      <div class="form-group">
+                        <label class=" control-label">Carnet de vacunación</label>
                         
+                          <input type="file" class="form-control" name="doc_vacunacion" id="doc_vacunacion" @if($Modo=='editar') data-initial-preview="{{isset($estudiante->doc_vacunacion) ? Storage::url("$estudiante->doc_vacunacion") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Documento+vacunacion"}}" @endif accept="application/pdf, .pdf">
+                          {!! $errors->first('doc_vacunacion','<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class=" control-label">Carnet de salud</label>
+                          
+                            <input type="file" class="form-control" name="doc_salud" id="doc_salud" @if($Modo=='editar') data-initial-preview="{{isset($estudiante->doc_salud) ? Storage::url("$estudiante->doc_salud") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Documento+salud"}}" @endif accept="application/pdf, .pdf">
+                            {!! $errors->first('doc_salud','<div class="invalid-feedback">:message</div>') !!}
+                          </div>
+                        </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class=" control-label">Otros documentos</label>
+                          
+                            <input type="file" class="form-control" name="doc_otros" id="doc_otros" @if($Modo=='editar') data-initial-preview="{{isset($estudiante->doc_otros) ? Storage::url("$estudiante->doc_otros") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Otros+documentos"}}" @endif accept="application/pdf, .pdf">
+                            {!! $errors->first('doc_otros','<div class="invalid-feedback">:message</div>') !!}
+                          </div>
+                        </div>
+                                         
+                  </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <input type="submit" class="btn btn-primary btn-lg" 

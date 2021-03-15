@@ -11,11 +11,12 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="d-flex justify-content-center"><h2>Gestion de facturas pagadas</h2></div>
-    
 <button type="button" id="enlace" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Facturas pendientes</button>
 <p>
 </p>
+<div class="d-flex justify-content-center"><h2>Gestion de facturas pagadas</h2></div>
+
+
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablapagos">
     <thead>
         <tr>

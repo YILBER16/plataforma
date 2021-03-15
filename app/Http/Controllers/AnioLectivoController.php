@@ -47,8 +47,8 @@ class AnioLectivoController extends Controller
      */
     public function store(CreateAnioRequest $request)
     {
-       $fecha=Carbon::now()->format('Y');
-        if($request->id_anio_lectivo == $fecha){
+    //    $fecha=Carbon::now()->format('Y');
+    //     if($request->id_anio_lectivo == $fecha){
         $data= new Anio_lectivo();
         $data->id_anio_lectivo = ($request->id_anio_lectivo);
         $data->fecha_inicio = ($request->fecha_inicio);
@@ -61,44 +61,56 @@ class AnioLectivoController extends Controller
 
         Meses::create(
             ['nom_mes' => 'Enero',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Febrero',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Marzo',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Abril',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Mayo',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Junio',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Julio',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Agosto',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Septiembre',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Octubre',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Noviembre',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
         Meses::create(
             ['nom_mes' => 'Diciembre',
-                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo]);
+                'id_anio_lectivo'=> $ultimoaño->id_anio_lectivo,
+                'estado'=> '0']);
                 alert()->success('Excelente', 'Registro agregado');
-            }else{
-                alert()->error('Error', 'No puedes registrar este año');
-            }
+            // }else{
+                //alert()->error('Error', 'No puedes registrar este año');
+            // }
      
 
 

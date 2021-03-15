@@ -41,7 +41,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Estudiante</label>
-                                  <input id="id_matricula" name="id_matricula" type="text" value="{{isset($pago->matricula->estudiante->id_estudiante)?$pago->matricula->estudiante->nom_estudiante:old('nom_estudiante')}}" class="form-control" readonly>
+                                  <input id="id_estudiante" name="id_estudiante" type="text" value="{{isset($pago->matricula->estudiante->id_estudiante)?$pago->matricula->estudiante->nom_estudiante:old('nom_estudiante')}}" class="form-control" readonly>
                                   {!! $errors->first('nom_estudiante','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
@@ -49,21 +49,37 @@
                         </div>    
                         <div class="row">
                           
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="col-xs-3 col-sm-3 col-md-3">
                           <div class="form-group">
-                                  <label>Saldo</label>
+                                  <label>Valor a pagar</label>
                                   <input id="saldo" name="saldo" type="text" value="{{isset($pago->saldo)?$pago->saldo:old('saldo')}}" class="form-control" readonly >
                                   {!! $errors->first('saldo','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                          <div class="form-group">
+                                  <label>Saldo a favor</label>
+                                  <input id="saldo_favor" name="saldo_favor" type="text" value="{{isset($pago->matricula->saldo_favor)?$pago->matricula->saldo_favor:old('saldo_favor')}}" class="form-control" readonly >
+                                  {!! $errors->first('saldo_favor','<div class="invalid-feedback">:message</div>') !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                          <label>Incluir saldo a favor</label>
+                          <div class="form-group ">
+                            <div class="custom-switch custom-switch-label-onoff">
+                              <input class="custom-switch-input" id="ADD_ID_HERE" name="valor" type="checkbox">
+                              <label class="custom-switch-btn" for="ADD_ID_HERE"></label>
+                            </div>
+                            </div>
+                            
+                        </div> 
+                        <div class="col-xs-3 col-sm-3 col-md-3">
                           <div class="form-group">
                                   <label>Abono</label>
-                                  <input id="abono" name="abono" type="number" class="form-control" maxlength="20"oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                  <input id="abono" name="abono" type="number" class="form-control" value="0" maxlength="20"oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                 {!! $errors->first('abono','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div> 
-                        
                         </div>  
                                  
                         <div class="form-group">

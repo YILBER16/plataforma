@@ -26,7 +26,11 @@ class CreateEstudiantesTable extends Migration
             $table->integer('id_departamento')->unsigned();
             $table->integer('id_ciudad')->unsigned();
             $table->string('sexo',15);    
-            $table->Integer('estado');        
+            $table->Integer('estado'); 
+            $table->string('doc_salud');
+            $table->string('doc_simat');
+            $table->string('doc_vacunacion');
+            $table->string('doc_otros')->nullable();       
             $table->timestamps();
             $table->softDeletes();
 

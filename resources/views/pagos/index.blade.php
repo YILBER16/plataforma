@@ -11,11 +11,13 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<button type="button" id="create" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Facturar</button>
+<button type="button" id="pagadas" class="btn btn-primary"><i class="fas fa-file-invoice-dollar"></i> Facturas pagadas</button>
+
+<p></p>
 <div class="d-flex justify-content-center"><h2>Gestion de pagos pendientes</h2></div>
-    
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-file-invoice-dollar"></i> Facturas pagadas</button>
-<p>
-</p>
+
+
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablapagos">
     <thead>
         <tr>
@@ -219,10 +221,12 @@
 });
 
 //enlace para registrar usuario
-document.getElementById("enlace").onclick = function () {
+document.getElementById("pagadas").onclick = function () {
     window.location.href = "{{url('facturaspagadas')}}";
 };
-
+document.getElementById("create").onclick = function () {
+    window.location.href = "{{url('pagos/create')}}";
+};
 $(document).ready(function(){
     var table = $('#tablapagos').DataTable();
  

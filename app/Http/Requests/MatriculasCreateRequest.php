@@ -43,7 +43,7 @@ class MatriculasCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_estudiante'=>'required|unique:matriculas|min:1',
+            'id_estudiante'=>'required',
             'id_grado'=>'required',
             'id_acudiente'=>'required',
             'id_padre'=>'required',
@@ -52,7 +52,8 @@ class MatriculasCreateRequest extends FormRequest
             'doc_foto' => 'required',
             'doc_documento' => 'required|mimes:pdf',
             'doc_paz_salvo' => 'required|mimes:pdf',
-            'doc_boletin' => 'required|mimes:pdf'
+            'doc_boletin' => 'required|mimes:pdf',
+           
         ];
     }
 }

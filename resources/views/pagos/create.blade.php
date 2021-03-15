@@ -14,7 +14,7 @@
 <form action="{{url('/pagos')}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     @include('pagos.form',['Modo'=>'crear'])
- <button type="submit">ir</button>
+
   </form>
 
 @endsection

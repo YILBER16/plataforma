@@ -26,6 +26,9 @@
     <link type="text/css" href="{{asset('dist/dist/css/material-icons.css')}}" rel="stylesheet">
     <!-- include the style -->
     <link rel="stylesheet" href="{{asset('css/alertify.css')}}" >
+    {{-- <link rel="stylesheet" href="{{asset('css/component-chosen.css')}}" > --}}
+    <link rel="stylesheet" href="{{asset('css/component-chosen.min.css')}}" >
+    <link rel="stylesheet" href="{{asset('css/component-custom-switch.min.css')}}" >
 <!-- include a theme -->
     <link rel="stylesheet" href="{{asset('css/themes/default.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/yearpicker.css')}}" />
@@ -709,6 +712,53 @@
 
   </div>
 
+   <!-- Modal item observaor-->
+<div class="modal fade" id="observadormodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registro de item del observador</h5>
+        </div>
+        <div class="modal-body">
+            @yield('cuerpo_modal_itemobservador')
+        <div class="modal-footer">
+            @yield('pie_modal_itemobservador')
+            <button id="btncancelaritem" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="observadormodaledit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edición de item del observador</h5>
+        </div>
+        <div class="modal-body">
+            @yield('cuerpo_modal_itemobservador_edit')
+            <input type="text" name="id" id="id" hidden>
+          <input type="text" name="iditem" id="iditem" hidden>
+          <div class="form-group">
+            <label for="" class="">Categoria de la falta</label>
+          <input type="text" name="categoriafaltaedit" id="categoriafaltaedit" class="form-control" maxlength="120" readonly>
+        </div> 
+          <div class="form-group">
+          <label for="" class="">Tipo de falta</label>
+          <input type="text" name="tipofaltaedit" id="tipofaltaedit" class="form-control" maxlength="120">
+        </div>   
+        <div class="modal-footer">
+            @yield('pie_modal_itemobservador_edit')
+            <button id="btncancelaritemedit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {{-- Modal eliminar --}}
   <div class="modal fade" id="deletemodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -785,7 +835,7 @@
   </div>
   <!-- Button trigger modal -->
  
-  <!-- Modal -->
+ 
   
 
     <!-- Bootstrap -->
@@ -811,6 +861,8 @@
     <!-- App JS -->
     <script src="{{asset('dist/dist/js/app.js')}}"></script>
     <script src="{{asset('js/yearpicker.js')}}"></script>
+    <script src="{{asset('js/chosen.jquery.js')}}"></script>
+    <script src="{{asset('js/chosen.jquery.min.js')}}"></script>
     <script src="{{asset('fullcalendar/main.js')}}"></script>
     <script src="{{asset('fullcalendar/main.min.js')}}"></script>
     <script src="{{asset('fullcalendar/locales-all.js')}}"></script>

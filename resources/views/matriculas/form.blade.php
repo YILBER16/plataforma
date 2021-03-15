@@ -6,35 +6,42 @@
 
                         <legend class="card-header text-center ">@if($Modo=='crear')Registro de matriculas  @endif @if($Modo=='editar')Actualización de matriculas @endif</legend>
                         <div class="card-body">
-                         <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
+                         <div class="row justify-content-center">
+                          @if($Modo=='crear')
+                          <div class="col-xs-2 col-sm-2 col-md-2 ">
+                            <div class="form-group " >
+                              <label>Antiguo</label>
+                              <div class="custom-switch custom-switch-label-onoff "style="position: relative;left: -40px;">
+                                <input class="custom-switch-input antiguos" id="ADD_ID_HERE" type="checkbox" >
+                                <label class="custom-switch-btn" for="ADD_ID_HERE"></label>
+                              </div> 
+                              </div>
+                            </div>
+                            @endif
+                            @if($Modo=='crear')<div class="col-xs-5 col-sm-5 col-md-5">@endif @if($Modo=='editar')<div class="col-xs-6 col-sm-6 col-md-6">@endif
                           <div class="form-group">
                                   <label>Estudiante</label>
-                      <select id="id_estudiante" name="id_estudiante" class="form-control " @if($Modo=='editar') readonly @endif>
-                        <option value="{{isset($matricula->estudiante->id_estudiante)?$matricula->estudiante->nom_estudiante:old('nom_estudiante')}}">@if($Modo=='crear')Seleccione una opción
-                          @endif
+                      <select id="id_estudiante" name="id_estudiante" @if($Modo=='crear') class="form-control form-control-chosen" @endif @if($Modo=='editar') class="form-control" readonly @endif>
+                        <option value="">
                           @if($Modo=='editar'){{isset($matricula->estudiante->id_estudiante)?$matricula->estudiante->nom_estudiante:old('nom_estudiante')}}@endif
                         </option>
-                        @foreach ($estudiantes as $item)
-                        <option value="{{$item['id_estudiante']}}">{{$item['nom_estudiante']}}</option>
-                         @endforeach
-                          </select>
+                       </select>
 
                          {!! $errors->first('id_estudiante','<div class="invalid-feedback">:message</div>') !!}
 
 
                             </div>
                           </div>
-                          <div class="col-xs-6 col-sm-6 col-md-6">
+                          @if($Modo=='crear')<div class="col-xs-5 col-sm-5 col-md-5">@endif @if($Modo=='editar')<div class="col-xs-6 col-sm-6 col-md-6">@endif
                             <div class="form-group">
                                     <label>Grado</label>
-                        <select id="id_grado" name="id_grado" class="form-control ">
+                        <select id="id_grado" name="id_grado" class="form-control form-control-chosen">
                           <option value="{{isset($matricula->grado->id_grado)?$matricula->grado->id_grado:old('id_grado')}}">@if($Modo=='crear')Seleccione una opción
                             @endif
                             @if($Modo=='editar'){{isset($matricula->grado->id_grado)?$matricula->grado->nom_grado:old('id_grado')}}@endif
                           </option>
                           @foreach ($grados as $item)
-                          <option value="{{$item['id_grado']}}">{{$item['nom_grado']}}</option>
+                          <option value="{{$item['id_grado']}}"@if(old('id_grado') == $item->id_grado) selected="selected" @endif>{{$item['nom_grado']}}</option>
                            @endforeach
                             </select>
   
@@ -48,13 +55,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Padre</label>
-                      <select id="id_padre" name="id_padre" class="form-control ">
+                      <select id="id_padre" name="id_padre" class="form-control form-control-chosen">
                         <option value="{{isset($matricula->padre->id_padre)?$matricula->padre->id_padre:old('nom_padre')}}">@if($Modo=='crear')Seleccione una opción
                           @endif
                           @if($Modo=='editar'){{isset($matricula->padre->id_padre)?$matricula->padre->nom_padre:old('nom_padre')}}@endif
                         </option>
                         @foreach ($padres as $item)
-                        <option value="{{$item['id_padre']}}">{{$item['nom_padre']}}</option>
+                        <option value="{{$item['id_padre']}}"@if(old('id_padre') == $item->id_padre) selected="selected" @endif>{{$item['nom_padre']}}</option>
                          @endforeach
                           </select>
 
@@ -66,13 +73,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                     <label>Madre</label>
-                                    <select id="id_madre" name="id_madre" class="form-control ">
+                                    <select id="id_madre" name="id_madre" class="form-control form-control-chosen">
                                       <option value="{{isset($matricula->madre->id_padre)?$matricula->madre->id_padre:old('nom_padre')}}">@if($Modo=='crear')Seleccione una opción
                                         @endif
                                         @if($Modo=='editar'){{isset($matricula->madre->id_padre)?$matricula->madre->nom_padre:old('nom_padre')}}@endif
                                       </option>
                                       @foreach ($madres as $item)
-                                      <option value="{{$item['id_padre']}}">{{$item['nom_padre']}}</option>
+                                      <option value="{{$item['id_padre']}}"@if(old('id_madre') == $item->id_padre) selected="selected" @endif>{{$item['nom_padre']}}</option>
                                        @endforeach
                                         </select>
               
@@ -86,13 +93,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Acudiente</label>
-                                  <select id="id_acudiente" name="id_acudiente" class="form-control ">
+                                  <select id="id_acudiente" name="id_acudiente" class="form-control form-control-chosen">
                                     <option value="{{isset($matricula->acudiente->id_acudiente)?$matricula->acudiente->id_acudiente:old('nom_acudiente')}}">@if($Modo=='crear')Seleccione una opción
                                       @endif
                                       @if($Modo=='editar'){{isset($matricula->acudiente->id_acudiente)?$matricula->acudiente->nom_acudiente:old('nom_acudiente')}}@endif
                                     </option>
                                     @foreach ($acudientes as $item)
-                                    <option value="{{$item['id_acudiente']}}">{{$item['nom_acudiente']}}</option>
+                                    <option value="{{$item['id_acudiente']}}"@if(old('id_acudiente') == $item->id_acudiente) selected="selected" @endif>{{$item['nom_acudiente']}}</option>
                                      @endforeach
                                       </select>
             
@@ -102,12 +109,32 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Valor matricula</label>
-                                <input id="valor_matricula" name="valor_matricula" type="text" value="{{isset($matricula->valor_matricula)?$matricula->valor_matricula:old('valor_matricula')}}"placeholder="valor de matricula" class="form-control {{$errors->has('valor_matricula')?'is-invalid':''}}" maxlength="65">
+                                <input id="valor_matricula" name="valor_matricula" type="text" value="{{isset($matricula->valor_matricula)?$matricula->valor_matricula:old('valor_matricula')}}"placeholder="valor de matricula" class="form-control {{$errors->has('valor_matricula')?'is-invalid':''}}" maxlength="200">
                                 
                                 {!! $errors->first('valor_matricula','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
                         </div>
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Valor sistema</label>
+                                  <input id="sistema" name="sistema" type="number" @if($Modo=='editar')value="{{isset($matricula->sistema)?$matricula->sistema:old('sistema')}}" @endif @if($Modo=='crear') @endif placeholder="Valor sistema" class="form-control {{$errors->has('sistema')?'is-invalid':''}}">
+                                  
+                                  {!! $errors->first('sistema','<div class="invalid-feedback">:message</div>') !!}
+                              </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Descuento (%)</label>
+                                  <input id="descuento_mensualidad" name="descuento_mensualidad" type="number" @if($Modo=='editar')value="{{isset($matricula->descuento_mensualidad)?$matricula->descuento_mensualidad:old('descuento_mensualidad')}}" @endif @if($Modo=='crear')value="0" @endif placeholder="Descuento de mensualidad" class="form-control {{$errors->has('descuento_matricula')?'is-invalid':''}}">
+                                  
+                                  {!! $errors->first('descuento_mensualidad','<div class="invalid-feedback">:message</div>') !!}
+                              </div>
+                          </div>
+                        
+                      </div>
+                      
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
@@ -147,7 +174,7 @@
                       
                     </div>
                     <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-md-12">
+                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                           <label class=" control-label">Otros documentos</label>
                           

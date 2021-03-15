@@ -13,7 +13,7 @@
                                   <select id="id_mes" name="id_mes" class="form-control ">
                                     <option value="">Seleccione una opción</option>
                                     @foreach ($meses as $item)
-                                    <option value="{{$item['id_mes']}}">{{$item['nom_mes']}}</option>
+                                    <option value="{{$item['id_mes']}}">{{$item['nom_mes']}} de {{$item['id_anio_lectivo']}}</option>
                                     @endforeach
                                  
                                      </select>
@@ -25,11 +25,10 @@
                         </div>                      
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <input type="submit" class="btn btn-primary btn-lg" 
-                                onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
+                        <button type="submit" class="btn btn-primary btn-lg" onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"><i class="far fa-check-square"></i> Facturar</button>   
 
-                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/grados')}}'">Cancelar</button>
-                          
+                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/pagos')}}'">Cancelar</button>
+        
                             </div>
 
                         </div>

@@ -22,8 +22,8 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Nombres</label>
-                                <input id="nom_acudiente" name="nom_acudiente" type="text" value="{{isset($acudiente->nom_acudiente)?$acudiente->nom_acudiente:old('nom_acudiente')}} "
-                                 placeholder="Nombres" class="form-control {{$errors->has('nom_acudiente')?'is-invalid':''}}" maxlength="120">
+                                <input id="nom_acudiente" name="nom_acudiente" type="text" value="{{isset($acudiente->nom_acudiente)?$acudiente->nom_acudiente:old('nom_acudiente')}}"
+                                 placeholder="Nombre y apellido" class="form-control {{$errors->has('nom_acudiente')?'is-invalid':''}}" maxlength="120">
                                 
                                 {!! $errors->first('nom_acudiente','<div class="invalid-feedback">:message</div>') !!}
                             </div>
@@ -62,7 +62,7 @@
                         <div class="form-group">
                           <label class="col-md-12 control-label">Documento de identidad</label>
                           <div class="col-md-12">
-                            <input type="file" class="form-control" name="doc_documento" id="doc_documento" data-initial-preview="{{isset($acudiente->doc_documento) ? Storage::url("$acudiente->doc_documento") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=documento+identidad"}}" accept="application/pdf, .pdf">
+                            <input type="file" class="form-control" name="doc_documento" id="doc_documento" @if($Modo=='editar') data-initial-preview="{{isset($acudiente->doc_documento) ? Storage::url("$acudiente->doc_documento") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=documento+identidad"}}" @endif accept="application/pdf, .pdf">
                             {!! $errors->first('doc_documento','<div class="invalid-feedback">:message</div>') !!}
                           </div>
                         </div>

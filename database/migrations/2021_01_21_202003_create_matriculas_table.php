@@ -21,7 +21,10 @@ class CreateMatriculasTable extends Migration
             $table->bigInteger('id_acudiente')->unsigned();
             $table->bigInteger('id_padre')->unsigned();
             $table->bigInteger('id_madre')->unsigned();
-            $table->double('valor_matricula', 8, 2);
+            $table->bigInteger('valor_matricula');
+            $table->bigInteger('descuento_mensualidad');
+            $table->bigInteger('sistema');
+            $table->bigInteger('saldo_favor');
             $table->string('doc_foto');
             $table->string('doc_documento');
             $table->string('doc_paz_salvo');

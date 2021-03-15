@@ -19,8 +19,6 @@ class MatriculasUpdateRequest extends FormRequest
     {
         return [
 
-            'id_estudiante.unique' => 'Esta estudiante ya se encuentra matriculado',
-            'unique' => 'El :attribute ya existe',
             'id_grado.required' => 'Por favor seleccione el grado del estudiante',
             'id_acudiente.required' => 'Por favor seleccione el acudiente del estudiante',
             'id_padre.required' => 'Por favor seleccione el padre del estudiante',
@@ -39,7 +37,6 @@ class MatriculasUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_estudiante'=>'unique:matriculas|min:1',
             'id_grado'=>'required',
             'id_acudiente'=>'required',
             'id_padre'=>'required',

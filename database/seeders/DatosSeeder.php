@@ -9,6 +9,8 @@ use App\Models\Anio_lectivo;
 use App\Models\Mensualidades;
 use App\Models\Matriculas;
 use App\Models\Meses;
+use App\Models\Categoriaitemobservador;
+use App\Models\Itemobservadores;
 
 use App\DataProviders\testDataProvider;
 
@@ -32,5 +34,7 @@ class DatosSeeder extends Seeder
         Anio_lectivo::insert(testDataProvider::Anio());
         Matriculas::insert(testDataProvider::Matriculas());
         Meses::insert(testDataProvider::Meses());
+        Categoriaitemobservador::insert(testDataProvider::Categoriaitemobservador());
+        itemobservadores::insert(testDataProvider::Itemobservador());
     }
 }

@@ -16,14 +16,18 @@ abstract class testDataProvider
         return [
             ['id_padre' => '8695235', 'nom_padre' => 'Olga cecilia mejia carvajal', 'parentesco' => 'Madre', 'ocu_padre' => 'Ama de casa', 'tel_padre' => '325365235', 'dir_padre' => 'calle 3ra 37-90'],
             ['id_padre' => '49662535', 'nom_padre' => 'Alejandro perez cardenas', 'parentesco' => 'Padre', 'ocu_padre' => 'Amo de casa', 'tel_padre' => '3104923562', 'dir_padre' => 'calle 3ra 37-90'],
+            ['id_padre' => '49662536', 'nom_padre' => 'Otro padre', 'parentesco' => 'Padre', 'ocu_padre' => 'Amo de casa', 'tel_padre' => '3104923562', 'dir_padre' => 'calle 3ra 37-90'],
+            ['id_padre' => '8695234', 'nom_padre' => 'Otra madre', 'parentesco' => 'Madre', 'ocu_padre' => 'Ama de casa', 'tel_padre' => '325365235', 'dir_padre' => 'calle 3ra 37-90'],
 
         ];
     }
     public static function Estudiantes()
     {
         return [
-            ['id_estudiante' => '1065896325', 'nom_estudiante' => 'Alejandra perez mejia', 'dir_estudiante' => 'Calle 3ra n 37-90', 'tel_estudiante' => '3256696325', 'cor_estudiante' => 'alejandra24pm@gmail.com', 'fecha_nacimiento' => '2004-11-10', 'fecha_expedicion' => '2016-11-24', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '1'],
-            ['id_estudiante' => '1065865236', 'nom_estudiante' => 'Danny libeth toro manosalva', 'dir_estudiante' => 'Calle 10 nt n 37-74', 'tel_estudiante' => '3168262761', 'cor_estudiante' => 'toro76621@gmail.com', 'fecha_nacimiento' => '2005-10-08', 'fecha_expedicion' => '2018-10-11', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '1'],
+            ['id_estudiante' => '1065896325', 'nom_estudiante' => 'Alejandra perez mejia', 'dir_estudiante' => 'Calle 3ra n 37-90', 'tel_estudiante' => '3256696325', 'cor_estudiante' => 'alejandra24pm@gmail.com', 'fecha_nacimiento' => '2004-11-10', 'fecha_expedicion' => '2016-11-24', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '1','doc_simat' => 'public/estudiantes/simat/gituw3Q646yj2dzy8fN5g0bFHyk0wpKFM348QRLx.pdf','doc_vacunacion' => 'public/estudiantes/vacunacion/BkaJRTsqhbrM4BtxZ343VVUtLHJqxQWGeRz5mjRX.pdf','doc_salud' => 'public/estudiantes/salud/a2tihTX7u9zijbKupjLDjAV8yJzGDNeAAoGxE0Fr.pdf'],
+            ['id_estudiante' => '1065865236', 'nom_estudiante' => 'Danny libeth toro manosalva', 'dir_estudiante' => 'Calle 10 nt n 37-74', 'tel_estudiante' => '3168262761', 'cor_estudiante' => 'toro76621@gmail.com', 'fecha_nacimiento' => '2005-10-08', 'fecha_expedicion' => '2018-10-11', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '1','doc_simat' => 'public/estudiantes/simat/gituw3Q646yj2dzy8fN5g0bFHyk0wpKFM348QRLx.pdf','doc_vacunacion' => 'public/estudiantes/vacunacion/BkaJRTsqhbrM4BtxZ343VVUtLHJqxQWGeRz5mjRX.pdf','doc_salud' => 'public/estudiantes/salud/a2tihTX7u9zijbKupjLDjAV8yJzGDNeAAoGxE0Fr.pdf'],
+            ['id_estudiante' => '1065906663', 'nom_estudiante' => 'Yilber jose toro', 'dir_estudiante' => 'Calle 3ra n 37-90', 'tel_estudiante' => '3256696325', 'cor_estudiante' => 'alejandra24pm@gmail.com', 'fecha_nacimiento' => '2004-11-10', 'fecha_expedicion' => '2016-11-24', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '0','doc_simat' => 'public/estudiantes/simat/gituw3Q646yj2dzy8fN5g0bFHyk0wpKFM348QRLx.pdf','doc_vacunacion' => 'public/estudiantes/vacunacion/BkaJRTsqhbrM4BtxZ343VVUtLHJqxQWGeRz5mjRX.pdf','doc_salud' => 'public/estudiantes/salud/a2tihTX7u9zijbKupjLDjAV8yJzGDNeAAoGxE0Fr.pdf'],
+            ['id_estudiante' => '1065906664', 'nom_estudiante' => 'Yilber jose toro2', 'dir_estudiante' => 'Calle 3ra n 37-90', 'tel_estudiante' => '3256696325', 'cor_estudiante' => 'alejandra24pm@gmail.com', 'fecha_nacimiento' => '2004-11-10', 'fecha_expedicion' => '2016-11-24', 'id_pais' => '47', 'id_departamento' => '786', 'id_ciudad' => '12960', 'sexo' => 'Femenino', 'estado' => '0','doc_simat' => 'public/estudiantes/simat/gituw3Q646yj2dzy8fN5g0bFHyk0wpKFM348QRLx.pdf','doc_vacunacion' => 'public/estudiantes/vacunacion/BkaJRTsqhbrM4BtxZ343VVUtLHJqxQWGeRz5mjRX.pdf','doc_salud' => 'public/estudiantes/salud/a2tihTX7u9zijbKupjLDjAV8yJzGDNeAAoGxE0Fr.pdf'],
 
         ];
     }
@@ -71,10 +75,31 @@ abstract class testDataProvider
     public static function Matriculas()
     {
         return [
-            ['id_matricula' => '1', 'id_estudiante' => '1065865236', 'id_grado' => '1', 'id_anio_lectivo' => '2021', 'id_acudiente' => '1065901418', 'id_padre' => '49662535', 'id_madre' => '8695235', 'valor_matricula' => '80000', 'doc_foto' => 'public/matriculas/fotos/Hf6GqbG1m5U7D00cIe7aW3KWCp2i5LydlzZCUoBh.jpg', 'doc_documento' => 'public/matriculas/documentos/X1t1EvzgbVbIjKC8OOL6lJxvacEqjnUY1rcGS04d.pdf', 'doc_paz_salvo' => 'public/matriculas/pazysalvos/qeErYz1lgCdCB7WzjtJ1GWqFqoPdqLbOQJy6JWHP.pdf', 'doc_boletin' => 'public/matriculas/boletines/WCUOXuOUHRBdUgRd5fpsMfg2aVyMEK1FwQitGZL4.pdf'],
-            ['id_matricula' => '2', 'id_estudiante' => '1065896325', 'id_grado' => '2', 'id_anio_lectivo' => '2021', 'id_acudiente' => '1065901418', 'id_padre' => '49662535', 'id_madre' => '8695235', 'valor_matricula' => '80000', 'doc_foto' => 'public/matriculas/fotos/b04K3emO2xCuQdQfqCAlA3zMnOYOxHi3ThmqBhZg.jpg', 'doc_documento' => 'public/matriculas/documentos/Oj38sFKnOQI8YQFbgZBCdh20fXqt0nnJ92P0Vmi6.pdf', 'doc_paz_salvo' => 'public/matriculas/pazysalvos/gQloO2XebMZpwKWTbHNHp8mb5qZSyuy6KyvQ2mog.pdf', 'doc_boletin' => 'public/matriculas/boletines/XkUU90RPqjaz1SOkuzfZhi1kkfW1YNMxQnfDrx5J.pdf'],
+            ['id_matricula' => '1', 'id_estudiante' => '1065865236', 'id_grado' => '1', 'id_anio_lectivo' => '2021', 'id_acudiente' => '1065901418', 'id_padre' => '49662536', 'id_madre' => '8695234', 'valor_matricula' => '80000','descuento_mensualidad' => '0','sistema' => '50000','saldo_favor' => '0','doc_foto' => 'public/matriculas/fotos/Hf6GqbG1m5U7D00cIe7aW3KWCp2i5LydlzZCUoBh.jpg', 'doc_documento' => 'public/matriculas/documentos/X1t1EvzgbVbIjKC8OOL6lJxvacEqjnUY1rcGS04d.pdf', 'doc_paz_salvo' => 'public/matriculas/pazysalvos/qeErYz1lgCdCB7WzjtJ1GWqFqoPdqLbOQJy6JWHP.pdf', 'doc_boletin' => 'public/matriculas/boletines/WCUOXuOUHRBdUgRd5fpsMfg2aVyMEK1FwQitGZL4.pdf'],
+            ['id_matricula' => '2', 'id_estudiante' => '1065896325', 'id_grado' => '2', 'id_anio_lectivo' => '2021', 'id_acudiente' => '1065901418', 'id_padre' => '49662535', 'id_madre' => '8695235', 'valor_matricula' => '80000','descuento_mensualidad' => '0','sistema' => '50000','saldo_favor' => '0','doc_foto' => 'public/matriculas/fotos/b04K3emO2xCuQdQfqCAlA3zMnOYOxHi3ThmqBhZg.jpg', 'doc_documento' => 'public/matriculas/documentos/Oj38sFKnOQI8YQFbgZBCdh20fXqt0nnJ92P0Vmi6.pdf', 'doc_paz_salvo' => 'public/matriculas/pazysalvos/gQloO2XebMZpwKWTbHNHp8mb5qZSyuy6KyvQ2mog.pdf', 'doc_boletin' => 'public/matriculas/boletines/XkUU90RPqjaz1SOkuzfZhi1kkfW1YNMxQnfDrx5J.pdf'],
 
         ];
     }
- 
+    public static function Categoriaitemobservador()
+    {
+        return [
+            ['categoria_falta' => 'Leve'],
+            ['categoria_falta' => 'Moderada'],
+            ['categoria_falta' => 'Grave'],
+
+
+        ];
+    }
+    public static function Itemobservador()
+    {
+        return [
+            ['categoria_falta' => '1', 'tipo_falta' => 'Primera falta leve'],
+            ['categoria_falta' => '1', 'tipo_falta' => 'Segunda falta leve'],
+            ['categoria_falta' => '2', 'tipo_falta' => 'tercera falta moderada'],
+            ['categoria_falta' => '2', 'tipo_falta' => 'cuarta falta moderada'],
+            ['categoria_falta' => '3', 'tipo_falta' => 'quinta falta grave'],
+            ['categoria_falta' => '3', 'tipo_falta' => 'quinta falta grave 2'],
+
+        ];
+    }
 }

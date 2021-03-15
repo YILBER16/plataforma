@@ -11,12 +11,15 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar matricula</button>
+
 <div class="d-flex justify-content-center"><h2>Gestion de matriculas</h2></div>
     
-<button type="button" id="enlace" class="btn btn-primary"><i class="fas fa-user-plus"></i> Agregar matricula</button>
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablamatriculas">
     <thead>
         <tr>
+            <th>AÑO</th>
             <th>Nº MATRICULA</th>
             <th>ESTUDIANTE</th>
             <th>GRADO</th>
@@ -40,7 +43,7 @@
           
             "ajax": "{!!URL::to('matriculas')!!}",
                 "columns":[
-                    
+                    {data:'id_anio_lectivo'},
                     {data:'id_matricula'},
                     {data:'estudiante.nom_estudiante'},
                     {data:'grado.nom_grado'},
@@ -49,6 +52,7 @@
                     
                    
                 ],
+                "order": [[ 1, "desc" ]],
                 'fnCreatedRow':function(nRow,aData,iDataIndex){
                         $(nRow).attr('class','item'+aData.id_matricula);
                     },
@@ -195,9 +199,15 @@
 });
 });
 
+$(document).ready(function(){
+      $('.form-control-chosen').chosen();
+});
+
+
 //enlace para registrar usuario
 document.getElementById("enlace").onclick = function () {
     window.location.href = "{{url('matriculas/create')}}";
+
 };
 
 

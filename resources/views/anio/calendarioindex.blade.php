@@ -152,11 +152,13 @@
           data:objEvento,
           success:function(msg){
             console.log(msg);
+            console.log('enviado');
             $('#calendarioadd').modal('toggle');
             calendar.refetchEvents();
             swal("Excelente!", "Evento registrado!", "success");
           },
           error:function(){
+            console.log('no enviado');
             swal("Ocurrio un error!", "Verifica los datos!", "error");
           }
         });

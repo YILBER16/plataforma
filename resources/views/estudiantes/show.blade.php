@@ -105,6 +105,44 @@
                         </div>
                     </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class=" control-label">Certificacion simat</label>
+                          
+                            <input type="file" class="form-control" name="doc_simat" id="doc_simat" data-initial-preview="{{isset($estudiante->doc_simat) ? Storage::url("$estudiante->doc_simat") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Foto+de+documento"}}" accept="application/pdf, .pdf">
+                            {!! $errors->first('doc_simat','<div class="invalid-feedback">:message</div>') !!}
+                          </div>
+                        </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class=" control-label">Carnet de vacunación</label>
+                      
+                        <input type="file" class="form-control" name="doc_vacunacion" id="doc_vacunacion"  data-initial-preview="{{isset($estudiante->doc_vacunacion) ? Storage::url("$estudiante->doc_vacunacion") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Documento+identidad"}}" accept="application/pdf, .pdf">
+                        {!! $errors->first('doc_vacunacion','<div class="invalid-feedback">:message</div>') !!}
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <div class="form-group">
+                        <label class=" control-label">Carnet de salud</label>
+                        
+                          <input type="file" class="form-control" name="doc_salud" id="doc_salud" data-initial-preview="{{isset($estudiante->doc_salud) ? Storage::url("$estudiante->doc_salud") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Foto+de+documento"}}" accept="application/pdf, .pdf">
+                          {!! $errors->first('doc_salud','<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                      </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <label class=" control-label">Otros documentos</label>
+                    
+                      <input type="file" class="form-control" name="doc_otros" id="doc_otros"  data-initial-preview="{{isset($estudiante->doc_otros) ? Storage::url("$estudiante->doc_otros") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=Documento+identidad"}}" accept="application/pdf, .pdf">
+                      {!! $errors->first('doc_otros','<div class="invalid-feedback">:message</div>') !!}
+                    </div>
+                  </div>
+                  
+                </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                
@@ -122,5 +160,80 @@
                          </div>
                        
 </fieldset>
+<script>
+  $(document).ready(function(){
+   $('#doc_otros').fileinput({
+       language: 'es',
+       pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+       allowedFileExtensions:['pdf'],
+       maxFileSize: 1000,
+       initialPreview: [
+       'https://plugins.krajee.com/samples/sample-2.pdf'
+   ],
+   initialPreviewConfig: [
+       {type: 'pdf', size: 3072}
+   ],
+       showUpload:false,
+       showClose:false,
+       initialPreviewAsData:true,
 
+       dropZoneEnabled:false,
+       theme:"fa",
+     });
+     $('#doc_simat').fileinput({
+       language: 'es',
+       pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+       allowedFileExtensions:['pdf'],
+       maxFileSize: 1000,
+       initialPreview: [
+       'https://plugins.krajee.com/samples/sample-2.pdf'
+   ],
+   initialPreviewConfig: [
+       {type: 'pdf', size: 3072}
+   ],
+       showUpload:false,
+       showClose:false,
+       initialPreviewAsData:true,
+
+       dropZoneEnabled:false,
+       theme:"fa",
+     });
+     $('#doc_vacunacion').fileinput({
+       language: 'es',
+       pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+       allowedFileExtensions:['pdf'],
+       maxFileSize: 1000,
+       initialPreview: [
+       'https://plugins.krajee.com/samples/sample-2.pdf'
+   ],
+   initialPreviewConfig: [
+       {type: 'pdf', size: 3072}
+   ],
+       showUpload:false,
+       showClose:false,
+       initialPreviewAsData:true,
+
+       dropZoneEnabled:false,
+       theme:"fa",
+     });
+     $('#doc_salud').fileinput({
+       language: 'es',
+       pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+       allowedFileExtensions:['pdf'],
+       maxFileSize: 1000,
+       initialPreview: [
+       'https://plugins.krajee.com/samples/sample-2.pdf'
+   ],
+   initialPreviewConfig: [
+       {type: 'pdf', size: 3072}
+   ],
+       showUpload:false,
+       showClose:false,
+       initialPreviewAsData:true,
+
+       dropZoneEnabled:false,
+       theme:"fa",
+     });
+    });
+</script>
 @endsection

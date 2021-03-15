@@ -71,7 +71,7 @@
                         <div class="form-group">
                           <label class=" control-label">Documento de identidad</label>
                           
-                            <input type="file" class="form-control" name="doc_documento" id="doc_documento" data-initial-preview="{{isset($docente->doc_documento) ? Storage::url("$docente->doc_documento") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=documento+identidad"}}" accept="application/pdf, .pdf">
+                            <input type="file" class="form-control" name="doc_documento" id="doc_documento" @if($Modo=='editar') data-initial-preview="{{isset($docente->doc_documento) ? Storage::url("$docente->doc_documento") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=documento+identidad"}}" @endif accept="application/pdf, .pdf">
                             {!! $errors->first('doc_documento','<div class="invalid-feedback">:message</div>') !!}
                           </div>
                         </div>
@@ -79,7 +79,7 @@
                           <div class="form-group">
                             <label class=" control-label">Hoja de vida</label>
                             
-                              <input type="file" class="form-control" name="hoja_de_vida" id="hoja_de_vida" data-initial-preview="{{isset($docente->hoja_de_vida) ? Storage::url("$docente->hoja_de_vida") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=hoja+de+vida"}}" accept="application/pdf, .pdf">
+                              <input type="file" class="form-control" name="hoja_de_vida" id="hoja_de_vida" @if($Modo=='editar') data-initial-preview="{{isset($docente->hoja_de_vida) ? Storage::url("$docente->hoja_de_vida") : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=hoja+de+vida"}}" @endif accept="application/pdf, .pdf">
                               {!! $errors->first('hoja_de_vida','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                           </div>
