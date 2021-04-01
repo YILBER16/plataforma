@@ -11,29 +11,30 @@
                         <div class="card-body">
                          <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Tipo de documento</label>
+                                 <input id="id_estudiante" name="id_estudiante" type="text" value="{{isset($estudiante->tipo_documento)?$estudiante->tipo_documento:old('tipo_documento')}}"
+                                   class="form-control " onFocus="this.blur()">
+                              </div>
+                            </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Nº identificación</label>
                                <input id="id_estudiante" name="id_estudiante" type="text" value="{{isset($estudiante->id_estudiante)?$estudiante->id_estudiante:old('id_estudiante')}}"
                                  class="form-control " onFocus="this.blur()">
-                               
-
-                    
-
-
                             </div>
                           </div>
+                        
+                        </div>
+                     
+                      <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Nombres</label>
                                 <input id="nom_estudiante" name="nom_estudiante" type="text" value="{{isset($estudiante->nom_estudiante)?$estudiante->nom_estudiante:old('nom_estudiante')}}"
                                   class="form-control " onFocus="this.blur()">
-                                
-                              
                             </div>
                         </div>
-                        </div>
-                     
-                      <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                                 <label>Dirección</label>
@@ -43,50 +44,55 @@
                         
                           </div>
                       </div>
-                     <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                                <label>Telefono</label>
-                              <input id="tel_estudiante" name="tel_estudiante" type="text" value="{{isset($estudiante->tel_estudiante)?$estudiante->tel_estudiante:old('tel_estudiante')}}"placeholder="Telefono" class="form-control "onFocus="this.blur()">
-                              
-                             
-                          </div>
-                      </div>
+                     
                       </div>
                       <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                                  <label>Telefono</label>
+                                <input id="tel_estudiante" name="tel_estudiante" type="text" value="{{isset($estudiante->tel_estudiante)?$estudiante->tel_estudiante:old('tel_estudiante')}}"placeholder="Telefono" class="form-control "onFocus="this.blur()">
+                                
+                               
+                            </div>
+                        </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                           <label>Sexo</label>
                           <input id="sexo" name="sexo" type="text" value="{{isset($estudiante->sexo)?$estudiante->sexo:old('sexo')}}"class="form-control "onFocus="this.blur()">
                             </div>
                       </div>
-                     <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                          <label>Correo</label>
-                          <input id="sexo" name="sexo" type="text" value="{{isset($estudiante->cor_estudiante)?$estudiante->cor_estudiante:old('cor_estudiante')}}"class="form-control "onFocus="this.blur()">
-                          
-                          </div>
-                      </div>
+                     
                       </div>
                       <div class="row">
-                        <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="form-group">
+                            <label>Correo</label>
+                            <input id="sexo" name="sexo" type="text" value="{{isset($estudiante->cor_estudiante)?$estudiante->cor_estudiante:old('cor_estudiante')}}"class="form-control "onFocus="this.blur()">
+                            
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                             <label>Pais</label>
                             <input id="id_pais" name="id_pais" type="text" value="{{isset($estudiante->pais->id)?$estudiante->pais->name:old('name')}}"class="form-control "onFocus="this.blur()">
                               </div>
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4">
-                          <div class="form-group">
-                            <label>Departamento</label>
-                            <input id="id_departamento" name="id_departamento" type="text" value="{{isset($estudiante->departamento->id)?$estudiante->departamento->name:old('name')}}"class="form-control "onFocus="this.blur()">
-                              </div>
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4">
-                          <div class="form-group">
-                            <label>Ciudad</label>
-                            <input id="id_ciudad" name="id_ciudad" type="text" value="{{isset($estudiante->ciudad->id)?$estudiante->ciudad->name:old('name')}}"class="form-control "onFocus="this.blur()">
-                              </div>
-                        </div>
+
                       </div>
+                      <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label>Departamento</label>
+                          <input id="id_departamento" name="id_departamento" type="text" value="{{isset($estudiante->departamento->id)?$estudiante->departamento->name:old('name')}}"class="form-control "onFocus="this.blur()">
+                            </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label>Ciudad</label>
+                          <input id="id_ciudad" name="id_ciudad" type="text" value="{{isset($estudiante->ciudad->id)?$estudiante->ciudad->name:old('name')}}"class="form-control "onFocus="this.blur()">
+                            </div>
+                      </div>
+                    </div>
                       <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">

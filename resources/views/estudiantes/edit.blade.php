@@ -93,6 +93,10 @@
     });
   </script>
    <script>
+     $(document).ready(function(){
+      $('.form-control-chosen').chosen();
+      
+    });
     $(document).ready(function(){
         $("#id_pais").change(function(){
           var pais = $(this).val();
@@ -104,6 +108,7 @@
                   departamento_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
     
                 $("#id_departamento").html(departamento_select);
+                $('#id_departamento').trigger("chosen:updated");
     
           });
         });
@@ -120,6 +125,7 @@
                   ciudad_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
     
                 $("#id_ciudad").html(ciudad_select);
+                $('#id_ciudad').trigger("chosen:updated");
     
           });
         });

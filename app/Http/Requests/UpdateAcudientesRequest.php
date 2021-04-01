@@ -18,7 +18,7 @@ class UpdateAcudientesRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'id_acudiente.unique' => 'Esta identificacion ya existe',
             'unique' => 'El :attribute ya existe',
             'nom_acudiente.required' => 'El nombre es obligatorio',
@@ -38,7 +38,7 @@ class UpdateAcudientesRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'tipo_documento'=>'required',
             'nom_acudiente'=>'required',
             'dir_acudiente'=>'required',
             'tel_acudiente'=>'required',

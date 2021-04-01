@@ -62,6 +62,7 @@ class AcudientesController extends Controller
     {
         $data= new Acudientes();
         $data->id_acudiente = ($request->id_acudiente);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_acudiente = ($request->nom_acudiente);
         $data->dir_acudiente= ($request->dir_acudiente);
         $data->tel_acudiente =($request->tel_acudiente);
@@ -70,9 +71,8 @@ class AcudientesController extends Controller
         $data->save();
       alert()->success('Excelente', 'Registro agregado');
 
+      //Alert::success('Success Title', 'Success Message');
 
-     
-       // Session::flash('flash_message','Guardado con exito');
         return redirect('acudientes');
     }
 
@@ -111,6 +111,7 @@ class AcudientesController extends Controller
     {
         $data= Acudientes::findOrFail($id_acudiente);
         $data->nom_acudiente = ($request->nom_acudiente);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->dir_acudiente= ($request->dir_acudiente);
         $data->tel_acudiente =($request->tel_acudiente);
         $data->cor_acudiente = ($request->cor_acudiente);
@@ -142,7 +143,7 @@ class AcudientesController extends Controller
        
     }
 
-    public function deleteDate(Request $request)
+    public function deleteDateacudiente(Request $request)
     {
         $data=Acudientes::find($request->id_acudiente)->delete();
         return response()->json();
@@ -150,11 +151,21 @@ class AcudientesController extends Controller
     public function indexdeshabilitados(Request $request)
     {
         //ver registros deshabilitados
-       $deshabilitados= Acudientes::onlyTrashed()->get();
-        
-       return view ('acudientes.indexdeshabilitados',compact('deshabilitados'));
+       
+       if ($request->ajax()) {
+  
+        return Datatables::of(Acudientes::onlyTrashed()->get())
+                ->addIndexColumn()
+                ->addColumn('action', function($data){
+        return route('restoreacudiente', $data->id_acudiente);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+                
     }
-    public function restore(Request $request, $id_acudiente)
+       return view ('acudientes.indexdeshabilitados');
+    }
+    public function restoreacudiente(Request $request, $id_acudiente)
    {
        //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
 

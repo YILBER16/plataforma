@@ -65,6 +65,7 @@ class EstudiantesController extends Controller
     {
         $data= new Estudiantes();
         $data->id_estudiante = ($request->id_estudiante);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_estudiante = ($request->nom_estudiante);
         $data->dir_estudiante= ($request->dir_estudiante);
         $data->tel_estudiante =($request->tel_estudiante);
@@ -133,6 +134,7 @@ return view('estudiantes.show',compact('estudiante','pais'));
     {
         $data= Estudiantes::findOrFail($id_estudiante);
         $data->nom_estudiante = ($request->nom_estudiante);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->dir_estudiante= ($request->dir_estudiante);
         $data->tel_estudiante =($request->tel_estudiante);
         $data->cor_estudiante = ($request->cor_estudiante);
@@ -197,7 +199,7 @@ return view('estudiantes.show',compact('estudiante','pais'));
     {
         //
     }
-    public function deleteDate(Request $request)
+    public function deleteDateestudiante(Request $request)
     {
         $data=Estudiantes::find($request->id_estudiante)->delete();
         return response()->json();
@@ -205,11 +207,21 @@ return view('estudiantes.show',compact('estudiante','pais'));
     public function indexdeshabilitados(Request $request)
     {
         //ver registros deshabilitados
-       $deshabilitados= Estudiantes::onlyTrashed()->get();
-        
-       return view ('estudiantes.indexdeshabilitados',compact('deshabilitados'));
+      
+       if ($request->ajax()) {
+  
+        return Datatables::of(Estudiantes::onlyTrashed()->get())
+                ->addIndexColumn()
+                ->addColumn('action', function($data){
+                    return route('restoreestudiante', $data->id_estudiante);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+                
     }
-    public function restoreestudiantes(Request $request, $id_estudiante)
+       return view ('estudiantes.indexdeshabilitados');
+    }
+    public function restoreestudiante(Request $request, $id_estudiante)
    {
        //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
 

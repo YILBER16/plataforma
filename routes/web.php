@@ -33,24 +33,24 @@ Route::get('/', function () {
 Auth::routes();
 //rutas acudientes
 Route::resource('/acudientes',AcudientesController::class);
-Route::post('/deleteDate', [AcudientesController::class, 'deleteDate']);
+Route::post('/deleteDateacudiente', [AcudientesController::class, 'deleteDateacudiente']);
 Route::get('/acudientesdeshabilitados', [AcudientesController::class, 'indexdeshabilitados']);
-Route::post('/restore/{id_acudiente}', [AcudientesController::class, 'restore']);
+Route::delete('/restoreacudiente/{id_acudiente}', [AcudientesController::class, 'restoreacudiente'])->name('restoreacudiente');
 //rutas padres
 Route::resource('/padres',PadresController::class);
-Route::post('/deleteDate', [PadresController::class, 'deleteDate']);
+Route::post('/deleteDatepadre', [PadresController::class, 'deleteDatepadre']);
 Route::get('/padresdeshabilitados', [PadresController::class, 'indexdeshabilitados']);
-Route::post('/restorepadres/{id_padre}', [PadresController::class, 'restorepadres']);
+Route::delete('/restorepadre/{id_padre}', [PadresController::class, 'restorepadre'])->name('restorepadre');
 //rutas docentes
 Route::resource('/docentes',DocentesController::class);
-Route::post('/deleteDate', [DocentesController::class, 'deleteDate']);
+Route::post('/deleteDatedocente', [DocentesController::class, 'deleteDatedocente']);
 Route::get('/docentesdeshabilitados', [DocentesController::class, 'indexdeshabilitados']);
-Route::post('/restoredocentes/{id_docente}', [DocentesController::class, 'restoredocentes']);
+Route::delete('/restoredocente/{id_docente}', [DocentesController::class, 'restoredocente'])->name('restoredocente');
 //rutas estudiantes
 Route::resource('/estudiantes',EstudiantesController::class);
-Route::post('/deleteDate', [EstudiantesController::class, 'deleteDate']);
+Route::post('/deleteDateestudiante', [EstudiantesController::class, 'deleteDateestudiante']);
 Route::get('/estudiantesdeshabilitados', [EstudiantesController::class, 'indexdeshabilitados']);
-Route::post('/restoreestudiantes/{id_estudiante}', [EstudiantesController::class, 'restoreestudiantes']);
+Route::delete('/restoreestudiante/{id_estudiante}', [EstudiantesController::class, 'restoreestudiante'])->name('restoreestudiante');
 Route::Get('bydepartamentos/{id}', [EstudiantesController::class, 'bydepartamentos']);
 Route::Get('byciudades/{id}', [EstudiantesController::class, 'byciudades']);
 //rutas años lectivos

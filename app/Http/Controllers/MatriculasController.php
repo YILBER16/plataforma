@@ -27,7 +27,17 @@ class MatriculasController extends Controller
     //  dd(Matriculas::with('estudiante','acudiente','padre','madre','grado')->orderBy('created_at','desc')->get());
         if ($request->ajax()) {
   
-            return Datatables::of(Matriculas::with('estudiante','acudiente','padre','madre','grado')->orderBy('created_at','desc')->get())
+            return Datatables::of(Matriculas::with(['estudiante' => function ($query) {
+                $query->withTrashed();
+            },'acudiente'=> function ($query) {
+                $query->withTrashed();
+            },'padre'=> function ($query) {
+                $query->withTrashed();
+            },'madre'=> function ($query) {
+                $query->withTrashed();
+            },'grado'=> function ($query) {
+                $query->withTrashed();
+            }])->orderBy('created_at','desc')->get())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/matriculas/'.$data->id_matricula.'"><i class="fas fa-eye"></i></a>';

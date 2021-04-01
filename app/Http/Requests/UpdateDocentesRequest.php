@@ -18,7 +18,7 @@ class UpdateDocentesRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'id_docente.unique' => 'Esta identificacion ya existe',
             'unique' => 'El :attribute ya existe',
             'nom_docente.required' => 'El nombre es obligatorio',
@@ -39,7 +39,7 @@ class UpdateDocentesRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'tipo_documento'=>'required',
             'nom_docente'=>'required',
             'dir_docente'=>'required',
             'tel_docente'=>'required',

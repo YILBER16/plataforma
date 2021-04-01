@@ -18,7 +18,7 @@ class UpdateEstudiantesRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'nom_estudiante.required' => 'El nombre es obligatorio',
             'dir_estudiante.required' => 'La dirección es obligatoria',
             'tel_estudiante.required' => 'El telefono es obligatorio',
@@ -42,7 +42,7 @@ class UpdateEstudiantesRequest extends FormRequest
     public function rules()
     {
         return [
-          
+            'tipo_documento'=>'required',
             'nom_estudiante'=>'required',
             'dir_estudiante'=>'required',
             'tel_estudiante'=>'required',

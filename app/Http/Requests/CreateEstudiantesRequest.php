@@ -18,15 +18,15 @@ class CreateEstudiantesRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'id_estudiante.required' => 'La cedula es obligatoria',
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
+            'id_estudiante.required' => 'Por favor digite el numero de documento',
             'id_estudiante.unique' => 'Esta identificación ya existe o se encuentra deshabilitada',
             'unique' => 'El :attribute ya existe o se encuentra deshabilitada',
-            'nom_estudiante.required' => 'El nombre es obligatorio',
-            'dir_estudiante.required' => 'La dirección es obligatoria',
-            'tel_estudiante.required' => 'El telefono es obligatorio',
-            'cor_estudiante.required' => 'El correo es obligatorio',
-            'sexo.required' => 'El sexo es obligatorio',
+            'nom_estudiante.required' => 'Por favor digite el nombre',
+            'dir_estudiante.required' => 'Por favor digite la dirección',
+            'tel_estudiante.required' => 'Por favor digite el telefono',
+            'cor_estudiante.required' => 'Por favor digite el correo',
+            'sexo.required' => 'Por favor seleccione el sexo',
             'id_pais.required' => 'El pais es obligatorio',
             'id_departamento.required' => 'El departamento es obligatorio',
             'id_ciudad.required' => 'La ciudad es obligaria',
@@ -47,6 +47,7 @@ class CreateEstudiantesRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipo_documento'=>'required',
             'id_estudiante'=>'required|unique:estudiantes|min:1',
             'nom_estudiante'=>'required',
             'dir_estudiante'=>'required',

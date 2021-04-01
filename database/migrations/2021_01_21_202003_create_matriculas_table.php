@@ -30,7 +30,7 @@ class CreateMatriculasTable extends Migration
             $table->string('doc_paz_salvo');
             $table->string('doc_boletin');
             $table->string('doc_otros')->nullable();  
-            
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('id_estudiante')->references('id_estudiante')->on('estudiantes');

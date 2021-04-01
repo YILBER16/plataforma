@@ -75,7 +75,7 @@
                 departamento_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
   
               $("#id_departamento").html(departamento_select);
-  
+              $('#id_departamento').trigger("chosen:updated");
         });
       });
     });
@@ -95,6 +95,7 @@
                 ciudad_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
   
               $("#id_ciudad").html(ciudad_select);
+              $('#id_ciudad').trigger("chosen:updated");
   
         });
       });

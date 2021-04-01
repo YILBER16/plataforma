@@ -15,5 +15,22 @@
     {{csrf_field()}}
     @include('padres.form',['Modo'=>'crear'])
   </form>
-
+  <script>
+    $(document).ready(function(){
+      $('#doc_documento').fileinput({
+        language: 'es',
+        allowedFileExtensions:['pdf'],
+        maxFileSize: 1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fa",
+      });
+    });
+    $(document).ready(function(){
+      $('.form-control-chosen').chosen();
+      
+    });
+  </script>
 @endsection

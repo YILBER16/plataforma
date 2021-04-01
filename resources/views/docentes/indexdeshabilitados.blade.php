@@ -7,7 +7,7 @@
 <table class="table table-striped table-bordered" style="width:100%" id="tabladeshabilitados">
     <thead>
         <tr>
-            <th>CEDULA</th>
+            <th>NºDOCUMENTO</th>
             <th>NOMBRE</th>
             <th>DIRECCION</th>
             <th>TELEFONO</th>
@@ -18,23 +18,7 @@
     </thead>
    
     <tbody>
-        @foreach ($deshabilitados as $item)
-        <tr>
-        <td>{{$item->id_docente}}</td>
-        <td>{{$item->nom_docente}}</td>
-        <td>{{$item->dir_docente}}</td>
-        <td>{{$item->tel_docente}}</td>
-        <td>{{$item->cor_docente}}</td>
-        <td>
-            <form method="post" action="{{url('/restoredocentes/'.$item->id_docente)}}">
-            {{csrf_field() }}
-            <button type="submit" onclick="return confirm('¿Desea habilitar este registro?');" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
-
-              </form>
-
-        </td>
-    </tr>
-        @endforeach
+       
     </tbody>
   
 </table>
@@ -43,8 +27,32 @@
 
     $(document).ready(function() {
         $('#tabladeshabilitados').DataTable({
+            
+            "serverSide":true,
             "processing":true,
             "responsive":true,
+          
+            "ajax": "{!!URL::to('docentesdeshabilitados')!!}",
+                "columns":[
+                    
+                    {data:'id_docente'},
+                    {data:'nom_docente'},
+                    {data:'dir_docente'},
+                    {data:'tel_docente'},
+                    {data:'nivel_academico'},
+                    { data: null,
+                    render: function(data){
+                        var delete_button = '<form id="formhabilitar" action="' + data.action + '" method="POST"><input type="hidden" name="_method" value="delete">{{csrf_field()}}<button class="btn btn-primary habilitar"><i class="fas fa-arrow-alt-circle-right"></i></button>';
+                        return  delete_button;
+                    }
+                    },
+                    
+                   
+                ],
+                'fnCreatedRow':function(nRow,aData,iDataIndex){
+                        $(nRow).attr('class','item'+aData.id_docente);
+                    },
+                
           "language":{
         "processing": "Procesando...",
     "lengthMenu": "Mostrar _MENU_ registros",
@@ -184,6 +192,21 @@
     "thousands": "."
 
     }
+});
+});
+$(document).on('click','.habilitar', function(evt){
+    evt.preventDefault();  
+swal({
+  title:"Esta seguro?",
+  text:"Recuerde que desea habilitara el registro permanentemente",
+  icon:"warning",
+  buttons:true,
+  dangerMode:true,
+})
+.then((willDelete)=>{
+  if(willDelete){
+    document.getElementById('formhabilitar').submit();
+}
 });
 });
 </script>
