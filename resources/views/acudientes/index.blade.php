@@ -221,19 +221,11 @@ success: function(data){
     console.log("eliminado");
     $('#deletemodal').modal('toggle');
     $('#item' +$('.did').text()).remove();
-    swal(
-  'Excelente!',
-  'Registro eliminado!',
-  'success'
-)
-$(".swal-button--confirm").click(function(){
-          console.log("click");
-window.location.href = "/acudientes";
-});
-    
+    alertaelim();
+    $('#tablaacudientes').DataTable().ajax.reload();
 
 },error:function(){ 
-        alertify.error('Ocurrio un error :( verifica los datos'); 
+       alertaerror();
     }
 });
 });

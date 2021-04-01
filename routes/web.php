@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use UxWeb\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\AcudientesController;
 use App\Http\Controllers\PadresController;
 use App\Http\Controllers\EstudiantesController;

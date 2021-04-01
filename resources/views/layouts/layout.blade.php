@@ -25,7 +25,7 @@
     <!-- Material Design Icons -->
     <link type="text/css" href="{{asset('dist/dist/css/material-icons.css')}}" rel="stylesheet">
     <!-- include the style -->
-    <link rel="stylesheet" href="{{asset('css/alertify.css')}}" >
+    {{-- <link rel="stylesheet" href="{{asset('css/alertify.css')}}" > --}}
     {{-- <link rel="stylesheet" href="{{asset('css/component-chosen.css')}}" > --}}
     <link rel="stylesheet" href="{{asset('css/component-chosen.min.css')}}" >
     <link rel="stylesheet" href="{{asset('css/component-custom-switch.min.css')}}" >
@@ -53,12 +53,68 @@
     
     
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
 
+<script>
+      
+function alertasuccess(){
+    const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
+Toast.fire({
+  icon: 'success',
+  title: 'Agregado con exito'
+})
+  }
+  function alertaelim(){
+    const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Eliminado con exito'
+})
+  }
+  function alertaerror(){
+    const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'error',
+  title: 'Ocurrio un error'
+})
+  }
+</script>
     @yield('script')
 </head>
 
@@ -201,7 +257,7 @@
 
           <div class="page-section">
               <div class="container page__container">
-                @include('sweet::alert')
+                @include('sweetalert::alert')
                 @yield('contenido')
               </div>
           </div>
@@ -841,8 +897,8 @@
     <!-- Bootstrap -->
     <script src="{{asset('dist/dist/vendor/popper.min.js')}}"></script>
     <script src="{{asset('dist/dist/vendor/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/alertify.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    {{-- <script src="{{asset('js/alertify.min.js')}}"></script> --}}
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 
   
 

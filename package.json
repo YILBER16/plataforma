@@ -24,7 +24,6 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
-        "alertifyjs": "^1.13.1",
         "bootstrap4c-chosen": "^1.1.1",
         "fullcalendar": "^5.5.1",
         "fullcalendar-scheduler": "^5.5.1",

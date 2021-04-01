@@ -177,7 +177,7 @@ $.ajax({
      
   },
   error:function(data){
-    console.log('error');
+    alertaerror();
   }
 });
 }
