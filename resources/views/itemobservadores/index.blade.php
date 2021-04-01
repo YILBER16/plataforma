@@ -52,6 +52,7 @@
 </table>
 
 <script>
+  
     $(document).ready(function(){ 
   $("#itemobservador").on('submit',function(e){
 
@@ -65,11 +66,12 @@ $.ajax({
 
     $('#observadormodal').modal('hide');
     $('#tablaobservadores').DataTable().ajax.reload();
-     alertify.success('Guardado con exito');
+    alertasuccess();
+     
 },
 error:function(error){
-      console.log(error);
-      alertify.success('No Guardado');
+  alertaerror();
+
 
       }
   });
@@ -104,15 +106,14 @@ $(document).ready(function(){
         _token:token
       },
       success: function(data){
-
-      alertify.success('Actualizado con exito :)');
+        alertasuccess();
       $('#observadormodaledit').modal('hide');
     $('#tablaobservadores').DataTable().ajax.reload();
 
 
       },error:function(error){
-      console.log(error);
-      alertify.success('Ocurrio un error :(');
+        alertaerror();
+     
 
       }
     });
@@ -144,17 +145,16 @@ $.ajax({
 
   type:"DELETE",
   success: function(data){
-    swal('Eliminado con exito','','success')
+    alertaelim();
     $('#tablaobservadores').DataTable().ajax.reload();
   },error:function(error){
-      console.log(error);
-      alertify.success('Ocurrio un error :(, el item puede estar en uso');
-
+    alertaerror();
       }
 });
 }
 });
 });
+
   </script>
 <script >
 $(document).ready(function() {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Acudientes;
 use DataTables;
-use UxWeb\SweetAlert\SweetAlert;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateAcudientesRequest;
@@ -69,8 +69,10 @@ class AcudientesController extends Controller
         $data->cor_acudiente = ($request->cor_acudiente);
         $data->doc_documento =$request->file('doc_documento')->store('public/acudientes');
         $data->save();
-      alert()->success('Excelente', 'Registro agregado');
-
+    // alert()->success('Excelente', 'Registro agregado');
+    //   Alert::success('Success Title', 'Success Message');
+    //   Alert::alert('Title', 'Message', 'Type');
+      alert('Excelente','Registrado con exito', 'success');
       //Alert::success('Success Title', 'Success Message');
 
         return redirect('acudientes');
@@ -127,6 +129,7 @@ class AcudientesController extends Controller
         }
              
         $data->save();
+     
         alert()->success('Excelente', 'actualizado correctamente');
    // Session::flash('flash_message','Guardado con exito');
         return redirect('acudientes');

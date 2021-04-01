@@ -19,7 +19,6 @@
   });
 </script>
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
        var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -155,11 +154,11 @@
             console.log('enviado');
             $('#calendarioadd').modal('toggle');
             calendar.refetchEvents();
-            swal("Excelente!", "Evento registrado!", "success");
+            alertasuccess();
           },
           error:function(){
             console.log('no enviado');
-            swal("Ocurrio un error!", "Verifica los datos!", "error");
+            alertaerror();
           }
         });
       }
