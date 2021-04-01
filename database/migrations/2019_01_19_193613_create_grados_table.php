@@ -19,6 +19,7 @@ class CreateGradosTable extends Migration
             $table->string('jornada', 20);
             $table->unsignedBigInteger('id_mensualidad');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_mensualidad')->references('id_mensualidad')->on('mensualidades');
         });

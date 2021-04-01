@@ -18,7 +18,7 @@ class CreatePadresRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'id_padre.required' => 'La cedula es obligatoria',
             'id_padre.unique' => 'Esta identificacion ya existe o se encuentra deshabilitada',
             'unique' => 'El :attribute ya existe o se encuentra deshabilitada',
@@ -38,6 +38,7 @@ class CreatePadresRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipo_documento'=>'required',
             'id_padre'=>'required|unique:padres|min:1',
             'nom_padre'=>'required',
             'ocu_padre'=>'required',

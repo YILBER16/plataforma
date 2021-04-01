@@ -61,6 +61,7 @@ class DocentesController extends Controller
     {
         $data= new Docentes();
         $data->id_docente = ($request->id_docente);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_docente = ($request->nom_docente);
         $data->dir_docente= ($request->dir_docente);
         $data->tel_docente =($request->tel_docente);
@@ -111,6 +112,7 @@ class DocentesController extends Controller
     public function update(UpdateDocentesRequest $request, $id_docente)
     {
         $data= docentes::findOrFail($id_docente);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_docente = ($request->nom_docente);
         $data->dir_docente= ($request->dir_docente);
         $data->tel_docente =($request->tel_docente);
@@ -156,7 +158,7 @@ class DocentesController extends Controller
     {
         //
     }
-    public function deleteDate(Request $request)
+    public function deleteDatedocente(Request $request)
     {
         $data=docentes::find($request->id_docente)->delete();
         return response()->json();
@@ -164,11 +166,22 @@ class DocentesController extends Controller
     public function indexdeshabilitados(Request $request)
     {
         //ver registros deshabilitados
-       $deshabilitados= docentes::onlyTrashed()->get();
-        
-       return view ('docentes.indexdeshabilitados',compact('deshabilitados'));
+       
+       if ($request->ajax()) {
+  
+        return Datatables::of(Docentes::onlyTrashed()->get())
+                ->addIndexColumn()
+                ->addColumn('action', function($data){
+                    return route('restoredocente', $data->id_docente);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+                
     }
-    public function restoredocentes(Request $request, $id_docente)
+        
+       return view ('docentes.indexdeshabilitados');
+    }
+    public function restoredocente(Request $request, $id_docente)
    {
        //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
 

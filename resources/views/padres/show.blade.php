@@ -11,28 +11,31 @@
                         <div class="card-body">
                          <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Tipo de documento</label>
+                                 <input id="tipo_documento" name="tipo_documento" type="text" value="{{isset($padre->tipo_documento)?$padre->tipo_documento:old('tipo_documento')}}"
+                                   placeholder="Cedula" class="form-control " onFocus="this.blur()">
+                              </div>
+                            </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Nº identificación</label>
                                <input id="id_padre" name="id_padre" type="text" value="{{isset($padre->id_padre)?$padre->id_padre:old('id_padre')}}"
                                  class="form-control " onFocus="this.blur()">
-                               
-
-                    
-
-
                             </div>
                           </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                                  <label>Nombres</label>
-                                <input id="nom_padre" name="nom_padre" type="text" value="{{isset($padre->nom_padre)?$padre->nom_padre:old('nom_padre')}}"
-                                  class="form-control " onFocus="this.blur()">
-                                
-                              
-                            </div>
-                        </div>
+                        
                         </div>
                         <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Nombres</label>
+                                  <input id="nom_padre" name="nom_padre" type="text" value="{{isset($padre->nom_padre)?$padre->nom_padre:old('nom_padre')}}"
+                                    class="form-control " onFocus="this.blur()">
+                                  
+                                
+                              </div>
+                          </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Parentesco</label>
@@ -40,26 +43,19 @@
                                 
                           </div>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                                  <label>Ocupación</label>
-                                <input id="ocu_padre" name="ocu_padre" type="text" value="{{isset($padre->ocu_padre)?$padre->ocu_padre:old('ocu_padre')}}" class="form-control "maxlength="30"onFocus="this.blur()">
-                                
-                                
-                            </div>
-                        </div>
+                        
                        
                         </div>
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                                  <label>Dirección</label>
-                                <input id="dir_padre" name="dir_padre" type="text" value="{{isset($padre->dir_padre)?$padre->dir_padre:old('dir_padre')}}"
-                                 placeholder="Direccion" class="form-control "onFocus="this.blur()">
-                               
+                            <div class="form-group">
+                                    <label>Ocupación</label>
+                                  <input id="ocu_padre" name="ocu_padre" type="text" value="{{isset($padre->ocu_padre)?$padre->ocu_padre:old('ocu_padre')}}" class="form-control "maxlength="30"onFocus="this.blur()">
+                                  
+                                  
+                              </div>
+                          </div>
                           
-                            </div>
-                        </div>
                        <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Telefono</label>
@@ -68,6 +64,24 @@
                                
                             </div>
                         </div>
+                     
+                      
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                    <label>Dirección</label>
+                                  <input id="dir_padre" name="dir_padre" type="text" value="{{isset($padre->dir_padre)?$padre->dir_padre:old('dir_padre')}}"
+                                   placeholder="Direccion" class="form-control "onFocus="this.blur()">
+                                 
+                            
+                              </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-12 control-label">Documento de identidad</label>
+                          <object type="application/pdf"  data="{{Storage::url("$padre->doc_documento")}}" width="100%" height="500" style="height: 85vh;"></object >
+
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">

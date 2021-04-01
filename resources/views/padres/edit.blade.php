@@ -37,5 +37,9 @@
         theme:"fa",
       });
     });
+    $(document).ready(function(){
+      $('.form-control-chosen').chosen();
+      
+    });
   </script>
 @endsection

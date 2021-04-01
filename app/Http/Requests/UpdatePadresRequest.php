@@ -18,7 +18,7 @@ class UpdatePadresRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'nom_padre.required' => 'El nombre es obligatorio',
             'ocu_padre.required' => 'La ocupacion es obligatoria',
             'parentesco.required' => 'El parentesco es obligatorio',
@@ -37,6 +37,7 @@ class UpdatePadresRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipo_documento'=>'required',
             'nom_padre'=>'required',
             'ocu_padre'=>'required',
             'parentesco'=>'required',

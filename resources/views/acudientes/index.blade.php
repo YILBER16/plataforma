@@ -18,7 +18,7 @@
 <table class="table table-striped table-bordered" style="text-align:center;width:100%" id="tablaacudientes">
     <thead>
         <tr>
-            <th>CEDULA</th>
+            <th>NºDOCUMENTO</th>
             <th>NOMBRE</th>
             <th>DIRECCION</th>
             <th>TELEFONO</th>
@@ -212,7 +212,7 @@ $(document).on('click','.btneliminar', function($id_acudiente){
 });
 $.ajax({
 type:'post',
-url:'/deleteDate',
+url:'/deleteDateacudiente',
 data:{
     '_token':$('input[name=_token]').val(),
     'id_acudiente':$(".did").text(),

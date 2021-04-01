@@ -11,6 +11,13 @@
                         <div class="card-body">
                          <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Tipo de documento</label>
+                                 <input id="tipo_documento" name="tipo_documento" type="text" value="{{isset($docente->tipo_documento)?$docente->tipo_documento:old('tipo_documento')}}"
+                                   placeholder="Cedula" class="form-control " onFocus="this.blur()">
+                              </div>
+                            </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Nº identificación</label>
                                <input id="id_docente" name="id_docente" type="text" value="{{isset($docente->id_docente)?$docente->id_docente:old('id_docente')}}"
@@ -22,17 +29,18 @@
 
                             </div>
                           </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                                  <label>Nombres</label>
-                                <input id="nom_docente" name="nom_docente" type="text" value="{{isset($docente->nom_docente)?$docente->nom_docente:old('nom_docente')}}"
-                                 placeholder="Nombres" class="form-control " onFocus="this.blur()">
-                                
-                              
-                            </div>
-                        </div>
+                        
                         </div>
                         <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Nombres</label>
+                                  <input id="nom_docente" name="nom_docente" type="text" value="{{isset($docente->nom_docente)?$docente->nom_docente:old('nom_docente')}}"
+                                   placeholder="Nombres" class="form-control " onFocus="this.blur()">
+                                  
+                                
+                              </div>
+                          </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Dirección</label>
@@ -42,16 +50,17 @@
                           
                             </div>
                         </div>
-                       <div class="col-xs-6 col-sm-6 col-md-6">
-                          <div class="form-group">
-                                  <label>Telefono</label>
-                                <input id="tel_docente" name="tel_docente" type="text" value="{{isset($docente->tel_docente)?$docente->tel_docente:old('tel_docente')}}"placeholder="Telefono" class="form-control "onFocus="this.blur()">
-                                
-                               
-                            </div>
-                        </div>
+                       
                         </div>
                         <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                    <label>Telefono</label>
+                                  <input id="tel_docente" name="tel_docente" type="text" value="{{isset($docente->tel_docente)?$docente->tel_docente:old('tel_docente')}}"placeholder="Telefono" class="form-control "onFocus="this.blur()">
+                                  
+                                 
+                              </div>
+                          </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Correo</label>
@@ -60,7 +69,11 @@
                      
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        
+                       
+                        </div>
+                        <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
                           <div class="form-group">
                                   <label>Nivel academico</label>
                                 <input id="nivel_academico" name="nivel_academico" type="text" value="{{isset($docente->nivel_academico)?$docente->nivel_academico:old('nivel_academico')}}"placeholder="Nivel academico" class="form-control "onFocus="this.blur()">
@@ -68,8 +81,7 @@
                      
                             </div>
                         </div>
-                       
-                        </div>
+                      </div>
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">

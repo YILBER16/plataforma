@@ -16,11 +16,13 @@ class CreatePadresTable extends Migration
         Schema::create('padres', function (Blueprint $table) {
             $table->bigInteger('id_padre')->unsigned();
             $table->primary('id_padre');
+            $table->string('tipo_documento', 20);
             $table->string('nom_padre', 120);
             $table->string('parentesco',30);
             $table->string('ocu_padre',15);
             $table->string('tel_padre',15);
             $table->string('dir_padre',120);
+            $table->string('doc_documento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

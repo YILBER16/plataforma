@@ -7,7 +7,7 @@
 <table class="table table-striped table-bordered" style="width:100%" id="tabladeshabilitados">
     <thead>
         <tr>
-            <th>CEDULA</th>
+            <th>NºDOCUMENTO</th>
             <th>NOMBRE</th>
             <th>DIRECCION</th>
             <th>TELEFONO</th>
@@ -18,23 +18,7 @@
     </thead>
    
     <tbody>
-        @foreach ($deshabilitados as $item)
-        <tr>
-        <td>{{$item->id_acudiente}}</td>
-        <td>{{$item->nom_acudiente}}</td>
-        <td>{{$item->dir_acudiente}}</td>
-        <td>{{$item->tel_acudiente}}</td>
-        <td>{{$item->cor_acudiente}}</td>
-        <td>
-            <form method="post" action="{{url('/restore/'.$item->id_acudiente)}}">
-            {{csrf_field() }}
-            <button type="submit" onclick="return confirm('¿Desea habilitar este registro?');" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
-
-              </form>
-
-        </td>
-    </tr>
-        @endforeach
+      
     </tbody>
   
 </table>
@@ -43,8 +27,32 @@
 
     $(document).ready(function() {
         $('#tabladeshabilitados').DataTable({
+            
+            "serverSide":true,
             "processing":true,
             "responsive":true,
+          
+            "ajax": "{!!URL::to('acudientesdeshabilitados')!!}",
+                "columns":[
+                    
+                    {data:'id_acudiente'},
+                    {data:'nom_acudiente'},
+                    {data:'dir_acudiente'},
+                    {data:'tel_acudiente'},
+                    {data:'cor_acudiente'},
+                   { data: null,
+                    render: function(data){
+                        var delete_button = '<form id="formhabilitar" action="' + data.action + '" method="POST"><input type="hidden" name="_method" value="delete">{{csrf_field()}}<button class="btn btn-primary habilitar"><i class="fas fa-arrow-alt-circle-right"></i></button>';
+                        return  delete_button;
+                    }
+                    },
+                    
+                   
+                ],
+                'fnCreatedRow':function(nRow,aData,iDataIndex){
+                        $(nRow).attr('class','item'+aData.id_acudiente);
+                    },
+                "responsive":true,
           "language":{
         "processing": "Procesando...",
     "lengthMenu": "Mostrar _MENU_ registros",
@@ -184,6 +192,21 @@
     "thousands": "."
 
     }
+});
+});
+$(document).on('click','.habilitar', function(evt){
+    evt.preventDefault();  
+swal({
+  title:"Esta seguro?",
+  text:"Recuerde que desea habilitara el registro permanentemente",
+  icon:"warning",
+  buttons:true,
+  dangerMode:true,
+})
+.then((willDelete)=>{
+  if(willDelete){
+    document.getElementById('formhabilitar').submit();
+}
 });
 });
 </script>

@@ -7,6 +7,7 @@ use DataTables;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePadresRequest;
 use App\Http\Requests\UpdatePadresRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PadresController extends Controller
 {
@@ -58,11 +59,13 @@ class PadresController extends Controller
     {
         $data= new Padres();
         $data->id_padre = ($request->id_padre);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_padre = ($request->nom_padre);
         $data->parentesco = ($request->parentesco);
         $data->ocu_padre = ($request->ocu_padre);
         $data->dir_padre= ($request->dir_padre);
         $data->tel_padre =($request->tel_padre);
+        $data->doc_documento =$request->file('doc_documento')->store('public/padres');
         $data->save();
       alert()->success('Excelente', 'Registro agregado');
 
@@ -107,11 +110,22 @@ return view('padres.show',compact('padre'));
     public function update(UpdatePadresRequest $request, $id_padre)
     {
         $data= Padres::findOrFail($id_padre);
+        $data->tipo_documento = ($request->tipo_documento);
         $data->nom_padre = ($request->nom_padre);
         $data->parentesco = ($request->parentesco);
         $data->ocu_padre = ($request->ocu_padre);
         $data->dir_padre= ($request->dir_padre);
         $data->tel_padre =($request->tel_padre);
+        if ($request->hasfile('doc_documento')) {
+            //existe un archivo cargado?
+            if (Storage::exists($data->doc_documento))
+        {
+             // aquí la borro
+             Storage::delete($data->doc_documento);
+        }
+        //guardo el archivo nuevo
+            $data->doc_documento =$request->file('doc_documento')->store('public/padres');
+        }
         $data->save();
         alert()->success('Excelente', 'actualizado correctamente');
    // Session::flash('flash_message','Guardado con exito');
@@ -128,7 +142,7 @@ return view('padres.show',compact('padre'));
     {
         //
     }
-    public function deleteDate(Request $request)
+    public function deleteDatepadre(Request $request)
     {
         $data=Padres::find($request->id_padre)->delete();
         return response()->json();
@@ -136,11 +150,22 @@ return view('padres.show',compact('padre'));
     public function indexdeshabilitados(Request $request)
     {
         //ver registros deshabilitados
-       $deshabilitados= Padres::onlyTrashed()->get();
-        
-       return view ('padres.indexdeshabilitados',compact('deshabilitados'));
+      
+       if ($request->ajax()) {
+  
+        return Datatables::of(Padres::onlyTrashed()->get())
+                ->addIndexColumn()
+                ->addColumn('action', function($data){
+                    return route('restorepadre', $data->id_padre);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+                
     }
-    public function restorepadres(Request $request, $id_padre)
+        
+       return view ('padres.indexdeshabilitados');
+    }
+    public function restorepadre(Request $request, $id_padre)
    {
        //Indicamos que la busqueda se haga en los registros eliminados con withTrashed
 

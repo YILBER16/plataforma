@@ -15,7 +15,9 @@ class Acudientes extends Model
     protected $table = "acudientes";
 
     protected $fillable = [
+        
         'id_acudiente',
+        'tipo_documento',
         'nom_acudiente',
         'dir_acudiente',
         'tel_acudiente',

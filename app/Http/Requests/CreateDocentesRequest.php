@@ -18,7 +18,7 @@ class CreateDocentesRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
             'id_docente.required' => 'La cedula es obligatoria',
             'id_docente.unique' => 'Esta identificación ya existe o se encuentra deshabilitada',
             'unique' => 'El :attribute ya existe o se encuentra deshabilitada',
@@ -40,6 +40,7 @@ class CreateDocentesRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipo_documento'=>'required',
             'id_docente'=>'required|unique:docentes|min:1',
             'nom_docente'=>'required',
             'dir_docente'=>'required',

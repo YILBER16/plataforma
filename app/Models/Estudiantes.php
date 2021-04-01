@@ -19,6 +19,7 @@ class Estudiantes extends Model
 
     protected $fillable = [
         'id_estudiante',
+        'tipo_documento',
         'nom_estudiante',
         'dir_estudiante',
         'tel_estudiante',

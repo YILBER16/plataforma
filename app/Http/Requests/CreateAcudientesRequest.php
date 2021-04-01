@@ -18,8 +18,8 @@ class CreateAcudientesRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'id_acudiente.required' => 'La cedula es obligatoria',
+            'tipo_documento.required' => 'Por favor elija un tipo de documento',
+            'id_acudiente.required' => 'Por favor digite el numero de documento',
             'id_acudiente.unique' => 'Esta identificacion ya existe o se encuentra deshabilitada',
             'unique' => 'El :attribute ya existe o se encuentra deshabilitada',
             'nom_acudiente.required' => 'El nombre es obligatorio',
@@ -39,6 +39,7 @@ class CreateAcudientesRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipo_documento'=>'required',
             'id_acudiente'=>'required|unique:acudientes|min:1',
             'nom_acudiente'=>'required',
             'dir_acudiente'=>'required',

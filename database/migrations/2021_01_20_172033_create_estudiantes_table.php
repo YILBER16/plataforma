@@ -16,6 +16,7 @@ class CreateEstudiantesTable extends Migration
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->bigInteger('id_estudiante')->unsigned();
             $table->primary('id_estudiante');
+            $table->string('tipo_documento', 20);
             $table->string('nom_estudiante', 120);
             $table->string('dir_estudiante', 120);
             $table->string('tel_estudiante', 15);
