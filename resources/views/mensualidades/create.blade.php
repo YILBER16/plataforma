@@ -11,9 +11,27 @@
                     </ul>
                 </div>
                 @endif
-<form action="{{url('/mensualidades')}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
+<form action="{{url('/mensualidades')}}" class="form-horizontal col-md-12" method="post"  id="mensualidadenviar" enctype="multipart/form-data">
     {{csrf_field()}}
     @include('mensualidades.form',['Modo'=>'crear'])
   </form>
+<script>
+  $(document).on('click','#guardar', function(evt){
+    evt.preventDefault();  
+    Swal.fire({
+  title: 'Esta seguro?',
+  text: "Recuerde diligenciar todos los campos!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si'
+}).then((result) => {
+  if (result.isConfirmed) {
+    document.getElementById('mensualidadenviar').submit();
+  }
+})
 
+});
+</script>
 @endsection

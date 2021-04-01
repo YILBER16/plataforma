@@ -25,7 +25,7 @@
                         </div>                      
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary btn-lg" onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"><i class="far fa-check-square"></i> Facturar</button>   
+                        <button id="guardar" type="submit" class="btn btn-primary btn-lg" ><i class="far fa-check-square"></i> Facturar</button>   
 
                         <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/pagos')}}'">Cancelar</button>
         

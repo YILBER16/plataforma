@@ -84,7 +84,7 @@
                                  
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="enviar();">Abonar</button>
+                                <button id="guardar" type="button" class="btn btn-primary btn-lg" >Abonar</button>
 
                         <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/pagos')}}'">Cancelar</button>
                           

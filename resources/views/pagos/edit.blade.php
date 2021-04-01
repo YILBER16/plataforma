@@ -18,24 +18,23 @@
   </form>
 
 
-  <script>
-    function enviar(){     
-     
-     swal({
-     title:"Esta seguro de abonar?",
-     text:"Recuerde que ya no podra modificar el abono",
-     icon:"warning",
-     buttons:true,
-     dangerMode:true,
-     })
-     .then((willDelete)=>{
-     if(willDelete){
-      $('#form').submit();
+         <script>
+        $(document).on('click','#guardar', function(evt){
+          evt.preventDefault();  
+          Swal.fire({
+        title: 'Esta seguro?',
+        text: "Recuerde que ya no podra modificar el abono",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $('#form').submit();
+        }
+      })
       
-         }
-       }); 
-     
-     };
-    
-       </script>
+      });
+      </script>
 @endsection

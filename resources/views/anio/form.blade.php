@@ -42,10 +42,10 @@
                        
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <input type="submit" class="btn btn-primary btn-lg" 
-                                onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
+                                <input id="guardar" type="submit" class="btn btn-primary btn-lg" 
+                                 value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
 
-                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/padres')}}'">Cancelar</button>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/aniolectivo')}}'">Cancelar</button>
                           
                             </div>
 
