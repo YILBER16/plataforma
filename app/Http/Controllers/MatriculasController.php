@@ -119,7 +119,9 @@ class MatriculasController extends Controller
      */
     public function show($id_matricula)
     {
-        $matricula=Matriculas::findOrFail($id_matricula); 
+        $matricula=Matriculas::with(['estudiante'=> function ($query) {
+            $query->withTrashed();
+        }])->findOrFail($id_matricula); 
         return view('matriculas.show',compact('matricula'));
     }
 
@@ -131,7 +133,9 @@ class MatriculasController extends Controller
      */
     public function edit($id_matricula)
     {
-        $matricula=Matriculas::with('estudiante','acudiente','padre','grado','madre')->findOrFail($id_matricula);
+        $matricula=Matriculas::with(['estudiante'=> function ($query) {
+            $query->withTrashed();
+        },'acudiente','padre','grado','madre'])->findOrFail($id_matricula);
         $estudiantes=Estudiantes::all()->where('estado','=','0');
         $grados=Grados::all();
         $acudientes=Acudientes::all();
@@ -223,7 +227,9 @@ class MatriculasController extends Controller
     }
     public function saldofavor(Request $request, $id_matricula)
     {
-       $estudiante= Matriculas::with('estudiante')->findOrFail($id_matricula);
+       $estudiante= Matriculas::with(['estudiante'=> function ($query) {
+        $query->withTrashed();
+    }])->findOrFail($id_matricula);
         return view('matriculas.saldo',compact('estudiante'));
 
     }
