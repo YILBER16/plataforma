@@ -72,8 +72,11 @@ Route::put('registrarsaldo/{id_matricula}', [MatriculasController::class, 'regis
 //rutas pagos
 Route::resource('/pagos',PagosController::class);
 Route::Get('/facturaspagadas', [PagosController::class, 'facturaspagadas']);
-Route::get('pdfpago/{id_pago}', [PagosController::class, 'exportpdfpago'])->name('pago.pdfpago');;
-//rutas observadores
+Route::get('pdfpago/{id_pago}', [PagosController::class, 'exportpdfpago'])->name('pago.pdfpago');
+Route::get('indexpapeleria', [PagosController::class, 'indexpapeleria']);
+Route::post('pagospapeleria', [PagosController::class, 'pagospapeleria']);
+
+//rutas observadorespagospapeleria
 Route::resource('/observadores',ObservadoresController::class);
 Route::Get('faltas/{id}', [ObservadoresController::class, 'faltas']);
 Route::Get('/verobservador/{id_estudiante}', [ObservadoresController::class, 'verobservador']);

@@ -73,7 +73,8 @@ class PagosController extends Controller
             $data = new Pagos();
            
             $data->id_matricula = $dato['id_matricula'];
-            $data->id_mes= ($request->id_mes);    
+            $data->id_mes= ($request->id_mes);
+            $data->tipo_pago= 'pension';    
             $dat1= $dato['grado'];
             $dat2=$dat1['mensualidad'];
             $dat3=$dat2['valor'];
@@ -265,6 +266,14 @@ class PagosController extends Controller
     $pdf=PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true,"isPhpEnabled", true])->setPaper(array(0,0,600,600))->loadView('pagos.pdfpago',compact('pago'));
     $pdf->getDomPDF()->set_option("enable_php", true);
     return $pdf->stream('pago.pdf');
+    }
+    public function pagospapeleria(Request $request)
+    {
+    
+    }
+    public function indexpapeleria(Request $request)
+    {
+        return view('pagos.indexpapeleria');
     }
      
 }

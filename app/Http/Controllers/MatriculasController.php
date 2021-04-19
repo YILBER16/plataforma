@@ -94,6 +94,7 @@ class MatriculasController extends Controller
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
         $data->valor_matricula = ($request->valor_matricula);
         $data->sistema = ($request->sistema);
+        $data->seguro_estudiantil = ($request->seguro_estudiantil);
         $data->descuento_mensualidad = ($request->descuento_mensualidad);
         $data->saldo_favor = '0';
         $data->doc_foto =$request->file('doc_foto')->store('public/matriculas/fotos');
@@ -161,6 +162,7 @@ class MatriculasController extends Controller
         $data->id_madre= ($request->id_madre);
         $data->id_acudiente =($request->id_acudiente);
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
+        $data->seguro_estudiantil = ($request->seguro_estudiantil);
         $data->valor_matricula = ($request->valor_matricula);
         $data->sistema = ($request->sistema);
         $data->descuento_mensualidad = ($request->descuento_mensualidad);

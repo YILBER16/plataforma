@@ -24,6 +24,7 @@ class CreateMatriculasTable extends Migration
             $table->bigInteger('valor_matricula');
             $table->bigInteger('descuento_mensualidad');
             $table->bigInteger('sistema');
+            $table->bigInteger('seguro_estudiantil')->nullable();
             $table->bigInteger('saldo_favor');
             $table->string('doc_foto');
             $table->string('doc_documento');
