@@ -94,6 +94,7 @@ class MatriculasController extends Controller
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
         $data->valor_matricula = ($request->valor_matricula);
         $data->sistema = ($request->sistema);
+        $data->seguro_estudiantil = ($request->seguro_estudiantil);
         $data->descuento_mensualidad = ($request->descuento_mensualidad);
         $data->saldo_favor = '0';
         $data->doc_foto =$request->file('doc_foto')->store('public/matriculas/fotos');
@@ -119,7 +120,9 @@ class MatriculasController extends Controller
      */
     public function show($id_matricula)
     {
-        $matricula=Matriculas::findOrFail($id_matricula); 
+        $matricula=Matriculas::with(['estudiante'=> function ($query) {
+            $query->withTrashed();
+        }])->findOrFail($id_matricula); 
         return view('matriculas.show',compact('matricula'));
     }
 
@@ -131,7 +134,9 @@ class MatriculasController extends Controller
      */
     public function edit($id_matricula)
     {
-        $matricula=Matriculas::with('estudiante','acudiente','padre','grado','madre')->findOrFail($id_matricula);
+        $matricula=Matriculas::with(['estudiante'=> function ($query) {
+            $query->withTrashed();
+        },'acudiente','padre','grado','madre'])->findOrFail($id_matricula);
         $estudiantes=Estudiantes::all()->where('estado','=','0');
         $grados=Grados::all();
         $acudientes=Acudientes::all();
@@ -157,6 +162,7 @@ class MatriculasController extends Controller
         $data->id_madre= ($request->id_madre);
         $data->id_acudiente =($request->id_acudiente);
         $data->id_anio_lectivo =$anio->id_anio_lectivo;
+        $data->seguro_estudiantil = ($request->seguro_estudiantil);
         $data->valor_matricula = ($request->valor_matricula);
         $data->sistema = ($request->sistema);
         $data->descuento_mensualidad = ($request->descuento_mensualidad);
@@ -223,7 +229,9 @@ class MatriculasController extends Controller
     }
     public function saldofavor(Request $request, $id_matricula)
     {
-       $estudiante= Matriculas::with('estudiante')->findOrFail($id_matricula);
+       $estudiante= Matriculas::with(['estudiante'=> function ($query) {
+        $query->withTrashed();
+    }])->findOrFail($id_matricula);
         return view('matriculas.saldo',compact('estudiante'));
 
     }

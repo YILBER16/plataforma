@@ -11,8 +11,9 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<button type="button" id="create" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Facturar</button>
+<button type="button" id="create" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Facturar mensualidad</button>
 <button type="button" id="pagadas" class="btn btn-primary"><i class="fas fa-file-invoice-dollar"></i> Facturas pagadas</button>
+<button type="button" id="papeleria" class="btn btn-primary"><i class="fas fa-hand-holding-usd"></i> Ingresos por papeleria</button>
 
 <p></p>
 <div class="d-flex justify-content-center"><h2>Gestion de pagos pendientes</h2></div>
@@ -226,6 +227,9 @@ document.getElementById("pagadas").onclick = function () {
 };
 document.getElementById("create").onclick = function () {
     window.location.href = "{{url('pagos/create')}}";
+};
+document.getElementById("papeleria").onclick = function () {
+    window.location.href = "{{url('indexpapeleria')}}";
 };
 $(document).ready(function(){
     var table = $('#tablapagos').DataTable();

@@ -41,8 +41,26 @@
                     
                     {data:'id_estudiante'},
                     {data:'nom_estudiante'},
-                    {data:'matricula.grado.nom_grado'},
-                    {data:'matricula.acudiente.nom_acudiente'},
+                    {data:'matricula.grado.nom_grado',
+                    visible: true,
+                    defaultContent: "",
+                    render:function ( data, type, row, meta ) {
+                        if (data == null){
+                            return 'Sin matricula';
+                        }else{
+                            return data;
+                        }
+                    }},
+                    {data:'matricula.acudiente.nom_acudiente',
+                    visible: true,
+                    defaultContent: "",
+                    render:function ( data, type, row, meta ) {
+                        if (data == null){
+                            return 'Sin matricula';
+                        }else{
+                            return data;
+                        }
+                    }},
                     {data:'action'},
                     
                    

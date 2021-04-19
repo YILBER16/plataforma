@@ -109,14 +109,14 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                           <div class="form-group">
                                   <label>Valor matricula</label>
-                                <input id="valor_matricula" name="valor_matricula" type="text" value="{{isset($matricula->valor_matricula)?$matricula->valor_matricula:old('valor_matricula')}}"placeholder="valor de matricula" class="form-control {{$errors->has('valor_matricula')?'is-invalid':''}}" maxlength="200">
+                                <input id="valor_matricula" name="valor_matricula" type="number" value="{{isset($matricula->valor_matricula)?$matricula->valor_matricula:old('valor_matricula')}}"placeholder="valor de matricula" class="form-control {{$errors->has('valor_matricula')?'is-invalid':''}}" maxlength="200">
                                 
                                 {!! $errors->first('valor_matricula','<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
                         </div>
                         <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
                                     <label>Valor sistema</label>
                                   <input id="sistema" name="sistema" type="number" @if($Modo=='editar')value="{{isset($matricula->sistema)?$matricula->sistema:old('sistema')}}" @endif @if($Modo=='crear') @endif placeholder="Valor sistema" class="form-control {{$errors->has('sistema')?'is-invalid':''}}">
@@ -124,7 +124,15 @@
                                   {!! $errors->first('sistema','<div class="invalid-feedback">:message</div>') !!}
                               </div>
                           </div>
-                          <div class="col-xs-6 col-sm-6 col-md-6">
+                          <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                    <label>Seguro estudiantil (Opcional)</label>
+                                  <input id="seguro_estudiantil" name="seguro_estudiantil" type="number" value="{{isset($matricula->seguro_estudiantil)?$matricula->seguro_estudiantil:old('seguro_estudiantil')}}" placeholder="Valor del seguro estudiantil" class="form-control {{$errors->has('seguro_estudiantil')?'is-invalid':''}}">
+                                  
+                                  {!! $errors->first('seguro_estudiantil','<div class="invalid-feedback">:message</div>') !!}
+                              </div>
+                          </div>
+                          <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
                                     <label>Descuento (%)</label>
                                   <input id="descuento_mensualidad" name="descuento_mensualidad" type="number" @if($Modo=='editar')value="{{isset($matricula->descuento_mensualidad)?$matricula->descuento_mensualidad:old('descuento_mensualidad')}}" @endif @if($Modo=='crear')value="0" @endif placeholder="Descuento de mensualidad" class="form-control {{$errors->has('descuento_matricula')?'is-invalid':''}}">
@@ -132,7 +140,7 @@
                                   {!! $errors->first('descuento_mensualidad','<div class="invalid-feedback">:message</div>') !!}
                               </div>
                           </div>
-                        
+                          
                       </div>
                       
                         <div class="row">
@@ -186,8 +194,8 @@
                   </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <input type="submit" class="btn btn-primary btn-lg" 
-                                onclick="return confirm('¿Verifique que estén correctamente diligencia todos los campos?');"  value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
+                                <input id="guardar" type="submit" class="btn btn-primary btn-lg" 
+                                 value="{{$Modo=='crear'?'Registrar':'Modificar'}}">      
 
                         <button type="button" class="btn btn-danger btn-lg" onclick="window.location='{{ url('/matriculas')}}'">Cancelar</button>
                           

@@ -39,7 +39,7 @@
     Swal.fire({
   title: 'Esta seguro?',
   text: "Recuerde diligenciar todos los campos!",
-  icon: 'warning',
+  icon: 'question',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',

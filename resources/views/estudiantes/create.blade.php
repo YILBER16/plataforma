@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-<form action="{{url('/estudiantes')}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
+<form action="{{url('/estudiantes')}}" class="form-horizontal col-md-12" method="post" id="estudianteenviar" enctype="multipart/form-data">
     {{csrf_field()}}
     @include('estudiantes.form',['Modo'=>'crear'])
   </form>
@@ -100,6 +100,22 @@
         });
       });
     });
-   
+    $(document).on('click','#guardar', function(evt){
+    evt.preventDefault();  
+    Swal.fire({
+  title: 'Esta seguro?',
+  text: "Recuerde diligenciar todos los campos!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si'
+}).then((result) => {
+  if (result.isConfirmed) {
+    document.getElementById('estudianteenviar').submit();
+  }
+})
+
+});
   </script>
 @endsection

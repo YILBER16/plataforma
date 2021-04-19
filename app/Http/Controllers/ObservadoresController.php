@@ -22,7 +22,8 @@ class ObservadoresController extends Controller
      */
     public function index(Request $request)
     {
- 
+       
+
         if ($request->ajax()) {
   
             return Datatables::of(Estudiantes::with('matricula','matricula.grado','matricula.acudiente')->get())

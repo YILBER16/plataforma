@@ -41,8 +41,9 @@
 
     
     <!-- Preloader -->
-    <link type="text/css" href="{{asset('dist/dist/css/preloader.css')}}" rel="stylesheet">
-
+    {{-- <link type="text/css" href="{{asset('dist/dist/css/preloader.css')}}" rel="stylesheet"> --}}
+    <link type="text/css" href="{{asset('css/preloaderpropio.css')}}" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <!-- App CSS -->
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
@@ -119,14 +120,22 @@ Toast.fire({
 </head>
 
 <body class="layout-app ">
-
-    <div class="preloader">
-        <div class="sk-double-bounce">
-            <div class="sk-child sk-double-bounce1"></div>
+    
+    {{-- <div class="preloader " >
+        
+        <div class="sk-double-bounce " >
+            <div class="sk-child sk-double-bounce1 " ></div>
             <div class="sk-child sk-double-bounce2"></div>
         </div>
-    </div>
-    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+    </div> --}}
+   
+    <div class="centrado">
+        <div class="loadercenter">
+            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_DMgKk1.json"  background="transparent"  speed="2"  style="width: 200px; height: 200px;"  loop  autoplay></lottie-player> 
+        </div>
+        </div>
+
+    <div class="mdk-drawer-layout js-mdk-drawer-layout " data-push data-responsive-width="992px">
       <div class="mdk-drawer-layout__content page-content">
 
           <!-- Header -->
@@ -766,7 +775,8 @@ Toast.fire({
 
 
 
-  </div>
+
+  
 
    <!-- Modal item observaor-->
 <div class="modal fade" id="observadormodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -813,7 +823,7 @@ Toast.fire({
     </div>
   </div>
 </div>
-
+</div>
 
 {{-- Modal eliminar --}}
   <div class="modal fade" id="deletemodal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -891,7 +901,7 @@ Toast.fire({
   </div>
   <!-- Button trigger modal -->
  
- 
+
   
 
     <!-- Bootstrap -->
@@ -915,6 +925,7 @@ Toast.fire({
     <script src="{{asset('dist/dist/vendor/fix-footer.js')}}"></script>
 
     <!-- App JS -->
+    <script src="{{asset('dist/dist/js/preloaderpropio.js')}}"></script>
     <script src="{{asset('dist/dist/js/app.js')}}"></script>
     <script src="{{asset('js/yearpicker.js')}}"></script>
     <script src="{{asset('js/chosen.jquery.js')}}"></script>

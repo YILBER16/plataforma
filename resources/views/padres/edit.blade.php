@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-<form action="{{url('/padres/'.$padre->id_padre)}}" class="form-horizontal col-md-12" method="post" enctype="multipart/form-data">
+<form action="{{url('/padres/'.$padre->id_padre)}}" class="form-horizontal col-md-12" method="post" id="padresenviar"  enctype="multipart/form-data">
     {{csrf_field()}}
     {{method_field('PATCH')}}
     @include('padres.form',['Modo'=>'editar'])
@@ -41,5 +41,22 @@
       $('.form-control-chosen').chosen();
       
     });
+    $(document).on('click','#guardar', function(evt){
+    evt.preventDefault();  
+    Swal.fire({
+  title: 'Esta seguro?',
+  text: "Recuerde diligenciar todos los campos!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si'
+}).then((result) => {
+  if (result.isConfirmed) {
+    document.getElementById('padresenviar').submit();
+  }
+})
+
+});
   </script>
 @endsection

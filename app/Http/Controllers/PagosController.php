@@ -27,7 +27,9 @@ class PagosController extends Controller
     
         if ($request->ajax()) {
            
-            return Datatables::of(Pagos::with('matricula','matricula.estudiante','mes')->where('saldo','!=','0')->get())
+            return Datatables::of(Pagos::with(['matricula','matricula.estudiante'=> function ($query) {
+                $query->withTrashed();
+            },'mes'])->where('saldo','!=','0')->get())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/pagos/'.$data->id_pago.'"><i class="fas fa-eye"></i></a>';
@@ -71,7 +73,8 @@ class PagosController extends Controller
             $data = new Pagos();
            
             $data->id_matricula = $dato['id_matricula'];
-            $data->id_mes= ($request->id_mes);    
+            $data->id_mes= ($request->id_mes);
+            $data->tipo_pago= 'pension';    
             $dat1= $dato['grado'];
             $dat2=$dat1['mensualidad'];
             $dat3=$dat2['valor'];
@@ -105,8 +108,12 @@ class PagosController extends Controller
     public function show(Request $request, $id_pago)
     {
         
-     $abonos= Abonos::with('pago','pago.mes','pago.matricula','pago.matricula.estudiante')->where('id_pago',$id_pago)->get();
-   $datos= Pagos::with('mes','matricula','matricula.estudiante')->findOrFail($id_pago);
+     $abonos= Abonos::with(['pago','pago.mes','pago.matricula','pago.matricula.estudiante'=> function ($query) {
+        $query->withTrashed();
+    }])->where('id_pago',$id_pago)->get();
+   $datos= Pagos::with(['mes','matricula','matricula.estudiante'=> function ($query) {
+    $query->withTrashed();
+}])->findOrFail($id_pago);
 
      return view ('pagos.show',compact('abonos','datos'));
     }
@@ -119,7 +126,9 @@ class PagosController extends Controller
      */
     public function edit($id_pago)
     {
-        $pago=Pagos::with('matricula', 'matricula.estudiante','matricula.acudiente','mes')->findOrFail($id_pago);
+        $pago=Pagos::with(['matricula', 'matricula.estudiante'=> function ($query) {
+            $query->withTrashed();
+        },'matricula.acudiente','mes'])->findOrFail($id_pago);
         return view('pagos.edit',compact('pago'));
     }
 
@@ -205,7 +214,7 @@ class PagosController extends Controller
         
                  }else{
                     alert()->error('Error', 'El abono no puede ser mayor al saldo');
-                    return back()->with('alert', 'Registrado con exito');
+                    return back();
                  }
         }       
 
@@ -231,7 +240,9 @@ class PagosController extends Controller
         if ($request->ajax()) {
 
            
-            return Datatables::of(Pagos::with('matricula','matricula.estudiante','mes')->where('saldo','==','0')->get())
+            return Datatables::of(Pagos::with(['matricula','matricula.estudiante'=> function ($query) {
+                $query->withTrashed();
+            },'mes'])->where('saldo','==','0')->get())
                     ->addIndexColumn()
                     ->addColumn('action', function($data){
             $btn = '<a type="button" class="viewbutton btn bg-primary" href="/pagos/'.$data->id_pago.'"><i class="fas fa-eye"></i></a>';
@@ -255,6 +266,14 @@ class PagosController extends Controller
     $pdf=PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true,"isPhpEnabled", true])->setPaper(array(0,0,600,600))->loadView('pagos.pdfpago',compact('pago'));
     $pdf->getDomPDF()->set_option("enable_php", true);
     return $pdf->stream('pago.pdf');
+    }
+    public function pagospapeleria(Request $request)
+    {
+    
+    }
+    public function indexpapeleria(Request $request)
+    {
+        return view('pagos.indexpapeleria');
     }
      
 }
