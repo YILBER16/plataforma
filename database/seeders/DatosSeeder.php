@@ -2,6 +2,7 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Estudiantes;
+use App\Models\Docentes;
 use App\Models\Grados;
 use App\Models\Acudientes;
 use App\Models\Padres;
@@ -29,6 +30,7 @@ class DatosSeeder extends Seeder
         Padres::insert(testDataProvider::Padres());
 
         Estudiantes::insert(testDataProvider::Estudiantes());
+        Docentes::insert(testDataProvider::Docentes());
         Mensualidades::insert(testDataProvider::Mensualidad());
         Grados::insert(testDataProvider::Grados());
         Anio_lectivo::insert(testDataProvider::Anio());

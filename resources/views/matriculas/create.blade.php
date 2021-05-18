@@ -109,6 +109,7 @@
         data:{},
         dataType:'json',
         success:function(data){
+          console.log(data);
           var antiguos = '<option value="">Seleccione una opción</option>'
               for (var i=0; i<data.length;i++){
                 antiguos+='<option value="'+data[i].id_estudiante+'">'+data[i].nom_estudiante+'</option>';

@@ -31,6 +31,12 @@ abstract class testDataProvider
 
         ];
     }
+    public static function Docentes()
+    {
+        return [
+            ['id_docente' => '1065906663','tipo_documento' => 'CC', 'nom_docente' => 'Leidy mejia', 'dir_docente' => 'Calle 3ra n 37-90', 'tel_docente' => '3256696325', 'cor_docente' => 'alejandra24pm@gmail.com', 'nivel_academico' => 'Profesional', 'doc_documento' => '2016-11-24', 'hoja_de_vida' => '47'],
+           ];
+    }
     public static function Mensualidad()
     {
         return [

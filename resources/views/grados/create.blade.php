@@ -28,7 +28,7 @@
   confirmButtonText: 'Si'
 }).then((result) => {
   if (result.isConfirmed) {
-    document.getElementById('guardarenviar').submit();
+    document.getElementById('gradosenviar').submit();
   }
 })
 

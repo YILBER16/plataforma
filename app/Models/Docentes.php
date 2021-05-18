@@ -24,4 +24,8 @@ class Docentes extends Model
     ];
     protected $primaryKey='id_docente';
     protected $dates= ['delete_at'];
+    public function egresos()
+    {
+        return $this->hasMany(Egresos::class,'id','id');
+    }
 }
