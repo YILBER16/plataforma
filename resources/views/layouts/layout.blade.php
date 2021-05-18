@@ -167,12 +167,12 @@ Toast.fire({
 
               <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                   <li class="nav-item">
-                      <a href="index.html" class="nav-link">Home</a>
+                      <a href="{{ url('/matriculas')}}" class="nav-link">Inicio</a>
                   </li>
                   <li class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">Courses</a>
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">Reportes</a>
                       <div class="dropdown-menu">
-                          <a href="courses.html" class="dropdown-item active">Browse Courses</a>
+                          <a href="courses.html" class="dropdown-item active">Deudas por estudiante</a>
                           <a href="student-course.html" class="dropdown-item">Preview Course</a>
                           <a href="student-lesson.html" class="dropdown-item">Preview Lesson</a>
                           <a href="student-take-course.html" class="dropdown-item"><span class="mr-16pt">Take Course</span> <span class="badge badge-notifications badge-accent text-uppercase ml-auto">Pro</span></a>

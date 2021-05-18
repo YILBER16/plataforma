@@ -14,6 +14,7 @@ use App\Http\Controllers\MatriculasController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ObservadoresController;
 use App\Http\Controllers\ItemobservadoresController;
+use App\Http\Controllers\EgresosygastosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,4 +83,10 @@ Route::Get('faltas/{id}', [ObservadoresController::class, 'faltas']);
 Route::Get('/verobservador/{id_estudiante}', [ObservadoresController::class, 'verobservador']);
 //rutas itemobservadores
 Route::resource('/itemobservadores',ItemobservadoresController::class);
+//rutas egresos y gastos
+Route::resource('/egresosygastos',EgresosygastosController::class);
+Route::get('/ccdocente', [EgresosygastosController::class, 'ccdocente']);
+Route::get('/nomdocente', [EgresosygastosController::class, 'nomdocente']);
+Route::get('/ccdirectivo', [EgresosygastosController::class, 'ccdirectivo']);
+Route::get('/nomdirectivo', [EgresosygastosController::class, 'nomdirectivo']);
 
